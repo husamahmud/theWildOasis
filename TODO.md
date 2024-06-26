@@ -6,21 +6,28 @@
 - [ ] Cabins
     - [ ] DTO
     - [ ] DAO
-        - [ ] CreateCabin
-        - [ ] GetCabin
-        - [ ] GetAllCabins
-        - [ ] DeleteCabin
+        - [x] CreateCabin
+        - [x] GetCabin
+        - [x] GetAllCabins
+        - [x] DeleteCabin
         - [ ] UpdateCabin
     - [ ] Validation
-        - [ ] Create
+        - [x] Create
         - [ ] Update
     - [ ] Controller
-        - [ ] CreateCabin
-        - [ ] GetCabin
-        - [ ] GetAllCabins
-        - [ ] DeleteCabin
+        - [x] CreateCabin
+        - [x] GetCabin
+        - [x] GetAllCabins
+        - [x] DeleteCabin
         - [ ] UpdateCabin
     - [ ] Routes
+        - [x] CreateCabin
+        - [x] GetCabin
+        - [x] GetAllCabins
+        - [x] DeleteCabin
+        - [ ] UpdateCabin
+    - [ ] Service
+        - [ ] Supabase - Create Cabin image
 - [ ] Booking
 
 ## Frontend:
