@@ -41,6 +41,12 @@ export default {
         'red-100': '#fee2e2',
         'red-700': '#b91c1c',
         'red-800': '#991b1b',
+
+        'color-grey-600': '#6b7280',
+        'color-grey-800': '#374151',
+        'color-grey-50': '#f9fafb',
+        'color-grey-400': '#9ca3af',
+        'color-brand-600': '#4f46e5',
       },
       boxShadow: {
         'sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
