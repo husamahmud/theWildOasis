@@ -31,3 +31,14 @@
 - [ ] Booking
 
 ## Frontend:
+
+- [x] Configurate TailwindCSS
+- [ ] Implement main components
+- [x] Implement main pages
+- [x] Implement main routes
+- [ ] Implement main services
+- [ ] Implement main hooks
+- [ ] Implement main context
+- [ ] Implement main utils
+- [x] Implement main styles
+- [ ] Implement main i18n

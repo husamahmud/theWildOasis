@@ -1,0 +1,23 @@
+{
+	"singleQuote": true,
+	"semi": false,
+	"printWidth": 80,
+	"maxAttrsOnTag": 1,
+	"jsxBracketSameLine": true,
+	"organizeAttributes": {
+		"order": [
+			"class",
+			"id",
+			"name",
+			"data-.+",
+			"aria-.+",
+			"$DEFAULT"
+		]
+	},
+	"proseWrap": "always",
+	"bracketSpacing": true,
+	"bracketSameLine": true,
+	"plugins": [
+		"prettier-plugin-tailwindcss"
+	]
+}
