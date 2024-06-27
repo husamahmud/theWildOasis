@@ -1,6 +1,10 @@
 import { CabinI } from '../../types/cabins.interface'
 import { BookingI } from '../../types/booking.interface'
 
+/**
+ * Data Transfer Object (DTO) for cabin details.
+ * This class is used to transfer data between layers and ensure the data integrity.
+ */
 export class CabinsDto implements Partial<CabinI> {
   cabinNumber: string
   maxCapacity: number
@@ -10,6 +14,10 @@ export class CabinsDto implements Partial<CabinI> {
   image: string
   bookings?: BookingI[]
 
+  /**
+   * Constructs a new CabinsDto object.
+   * @param {CabinI} bodyRequest - The cabin details to be used for creating the DTO.
+   */
   constructor(bodyRequest: CabinI) {
     this.cabinNumber = bodyRequest.cabinNumber
     this.maxCapacity = bodyRequest.maxCapacity

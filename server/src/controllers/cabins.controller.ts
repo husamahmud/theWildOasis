@@ -9,18 +9,28 @@ import { CabinsDao } from '../models/dao/cabins.dao'
 
 // import { generateImageUrl } from '../services/supabase.service'
 
+/**
+ * Controller class for handling cabin-related operations.
+ */
 export class CabinsController {
+  /**
+   * Handles the creation of a new cabin.
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   */
   static async createCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
     const { bookings, ...cabinData } = cabinDto
 
-    try {
-      const { error } = await CabinsValidations.createCabin(cabinData)
-      if (error) {
-        console.error('Error: cabin validation', error)
-        return sendResponse(res, 400, null, error)
-      }
+    // Validate cabin data
+    const { error } = await CabinsValidations.createCabin(cabinData)
+    if (error) {
+      console.error('Error: cabin validation', error)
+      return sendResponse(res, 400, null, error)
+    }
 
+    try {
+      // Check if the cabin already exists
       const cabinNumber = cabinData.cabinNumber
       const existingCabin = await prisma.cabins.findUnique({
         where: { cabinNumber },
@@ -34,6 +44,7 @@ export class CabinsController {
       // const imageUrl = await generateImageUrl(cabinData.image)
       // cabinData.image = imageUrl
 
+      // Create the cabin
       const cabin = await CabinsDao.createCabin(cabinData)
       console.log('Cabin created successfully')
       return sendResponse(res, 201, cabin, 'Cabin created successfully')
@@ -43,18 +54,25 @@ export class CabinsController {
     }
   }
 
+  /**
+   * Handles the updating of an existing cabin.
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   */
   static async updateCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
     const cabinNumber = req.params.cabinNumber
     const { bookings, ...cabinData } = cabinDto
 
-    try {
-      const { error } = await CabinsValidations.updateCabin(cabinData)
-      if (error) {
-        console.error('Error: cabin validation', error)
-        return sendResponse(res, 400, null, error)
-      }
+    // Validate cabin data
+    const { error } = await CabinsValidations.updateCabin(cabinData)
+    if (error) {
+      console.error('Error: cabin validation', error)
+      return sendResponse(res, 400, null, error)
+    }
 
+    try {
+      // Check if the cabin exists
       const existingCabin = await prisma.cabins.findUnique({
         where: { cabinNumber },
       })
@@ -63,6 +81,7 @@ export class CabinsController {
         return sendResponse(res, 404, null, 'Cabin not found')
       }
 
+      // Update the cabin
       const cabin = await CabinsDao.updateCabin(cabinNumber, cabinData)
       console.log('Cabin updated successfully')
       return sendResponse(res, 200, cabin, 'Cabin updated successfully')
@@ -72,6 +91,11 @@ export class CabinsController {
     }
   }
 
+  /**
+   * Retrieves all cabins from the database.
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   */
   static async getAllCabins(req: Request, res: Response) {
     try {
       const cabins = await CabinsDao.getAllCabins()
@@ -83,6 +107,11 @@ export class CabinsController {
     }
   }
 
+  /**
+   * Retrieves a specific cabin by its cabin number.
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   */
   static async getCabin(req: Request, res: Response) {
     const cabinNumber = req.params.cabinNumber
 
@@ -101,6 +130,11 @@ export class CabinsController {
     }
   }
 
+  /**
+   * Deletes a specific cabin by its cabin number.
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object.
+   */
   static async deleteCabin(req: Request, res: Response) {
     const cabinNumber = req.params.cabinNumber
 
