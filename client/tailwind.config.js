@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -49,22 +47,23 @@ export default {
         'color-brand-600': '#4f46e5',
       },
       boxShadow: {
-        'sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
-        'md': '0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06)',
-        'lg': '0 2.4rem 3.2rem rgba(0, 0, 0, 0.12)',
+        sm: '0 1px 2px rgba(0, 0, 0, 0.04)',
+        md: '0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06)',
+        lg: '0 2.4rem 3.2rem rgba(0, 0, 0, 0.12)',
       },
       borderRadius: {
-        'tiny': '3px',
-        'sm': '5px',
-        'md': '7px',
-        'lg': '9px',
+        tiny: '3px',
+        sm: '5px',
+        md: '7px',
+        lg: '9px',
       },
       transitionProperty: {
-        'background': 'background-color',
-        'border': 'border',
+        background: 'background-color',
+        border: 'border',
       },
       fontFamily: {
-        'sans': ['Poppins', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
+        sons: ['sons', 'sans-serif'],
       },
       grayscale: {
         0: '0',

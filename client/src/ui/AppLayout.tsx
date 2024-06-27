@@ -9,7 +9,7 @@ export default function AppLayout() {
       <Header />
       <Sidebar />
       <main className="overflow-scroll bg-grey-50 px-20 pb-24 pt-16">
-        <div className="mx-auto my-0 flex max-w-32 flex-col gap-14">
+        <div className="mx-auto my-0 flex max-w-[120rem] flex-col gap-14">
           <Outlet />
         </div>
       </main>
