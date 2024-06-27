@@ -8,6 +8,13 @@ export class CabinsDao {
     return prisma.cabins.create({ data: cabin })
   }
 
+  static async updateCabin(
+    cabinNumber: string,
+    cabin: CabinsDto,
+  ): Promise<CabinI> {
+    return prisma.cabins.update({ where: { cabinNumber }, data: cabin })
+  }
+
   static async getAllCabins(): Promise<CabinI[] | []> {
     return prisma.cabins.findMany()
   }

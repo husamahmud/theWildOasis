@@ -18,7 +18,7 @@ export class CabinsController {
       const { error } = await CabinsValidations.createCabin(cabinData)
       if (error) {
         console.error('Error: cabin validation', error)
-        return sendResponse(res, 400, null, error.details.message)
+        return sendResponse(res, 400, null, error)
       }
 
       const cabinNumber = cabinData.cabinNumber
@@ -39,6 +39,35 @@ export class CabinsController {
       return sendResponse(res, 201, cabin, 'Cabin created successfully')
     } catch (error: any) {
       console.log('Error: create cabin', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
+
+  static async updateCabin(req: Request, res: Response) {
+    const cabinDto = new CabinsDto(req.body)
+    const cabinNumber = req.params.cabinNumber
+    const { bookings, ...cabinData } = cabinDto
+
+    try {
+      const { error } = await CabinsValidations.updateCabin(cabinData)
+      if (error) {
+        console.error('Error: cabin validation', error)
+        return sendResponse(res, 400, null, error)
+      }
+
+      const existingCabin = await prisma.cabins.findUnique({
+        where: { cabinNumber },
+      })
+      if (!existingCabin) {
+        console.error('Error: cabin not found')
+        return sendResponse(res, 404, null, 'Cabin not found')
+      }
+
+      const cabin = await CabinsDao.updateCabin(cabinNumber, cabinData)
+      console.log('Cabin updated successfully')
+      return sendResponse(res, 200, cabin, 'Cabin updated successfully')
+    } catch (error: any) {
+      console.log('Error: update cabin', error)
       return sendResponse(res, 500, null, error)
     }
   }
