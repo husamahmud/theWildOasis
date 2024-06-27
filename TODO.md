@@ -33,8 +33,13 @@
 ## Frontend:
 
 - [x] Configurate TailwindCSS
-- [ ] Implement main components
-- [x] Implement main pages
+- [ ] Implement main Pages
+    - [x] Implement cabins
+    - [ ] Implement booking
+    - [ ] Implement user
+    - [ ] Implement guest
+    - [ ] Implement settings
+    - [ ] Implement Login
 - [x] Implement main routes
 - [ ] Implement main services
 - [ ] Implement main hooks
