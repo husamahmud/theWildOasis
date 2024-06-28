@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -8,8 +9,8 @@ import CabinsRoute from './routes/cabins.route'
 const app = express()
 const PORT = process.env.PORT
 
-// Parse JSON requests
 app.use(express.json())
+app.use(cors())
 
 // Root route - Info about cabins endpoints
 app.get('/', (req, res) => {
