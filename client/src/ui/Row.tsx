@@ -3,7 +3,7 @@ import React from 'react'
 type RowProps = {
   type?: 'horizontal' | 'vertical'
   children: React.ReactNode
-  classNames: string
+  classNames?: string
 }
 
 const Row: React.FC<RowProps> = ({
@@ -17,8 +17,7 @@ const Row: React.FC<RowProps> = ({
         type === 'horizontal'
           ? 'items-center justify-between'
           : 'flex-col gap-4'
-      } ${classNames}`}
-    >
+      } ${classNames}`}>
       {children}
     </div>
   )

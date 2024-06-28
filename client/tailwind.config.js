@@ -62,7 +62,6 @@ export default {
         border: 'border',
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
         sons: ['sons', 'sans-serif'],
       },
       grayscale: {
@@ -71,6 +70,30 @@ export default {
       },
       opacity: {
         100: '1',
+      },
+      keyframes: {
+        spinCustom: {
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
+        dash: {
+          '0%': {
+            strokeDasharray: '1, 200',
+            strokeDashoffset: '0',
+          },
+          '50%': {
+            strokeDasharray: '90, 200',
+            strokeDashoffset: '-35px',
+          },
+          '100%': {
+            strokeDashoffset: '-125px',
+          },
+        },
+      },
+      animation: {
+        'spin-custom': 'spinCustom 2s linear infinite',
+        dash: 'dash 1.5s ease-in-out infinite',
       },
     },
   },

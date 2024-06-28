@@ -1,3 +1,5 @@
+export const BASE_URL = 'http://localhost:8080/api/v1'
+
 export const CABINS = [
   {
     id: 'ed2e3d81-0e15-42d6-936e-541f9c1088ed',

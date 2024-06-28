@@ -10,8 +10,7 @@ const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
   return (
     <div
       role="row"
-      className="font-sons grid grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr] items-center gap-x-6 px-9 py-5 text-2xl"
-    >
+      className="grid grid-cols-[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr] items-center gap-x-6 px-9 py-5 text-2xl">
       <Img image={image} />
       <Cabin cabinNumber={cabinNumber} />
       <Guests maxCapacity={maxCapacity} />
