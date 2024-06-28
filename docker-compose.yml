@@ -26,19 +26,11 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:password@localhost:5432/thewildoasis
+      - DATABASE_URL=postgresql://postgres:password@wildOasis-db:5432/thewildoasis
+      - PORT=8080
     depends_on:
-      - prisma
-    env_file:
-      - ./server/.env
-
-  prisma:
-    image: prismagraphql/prisma:1.34.10
-    platform: linux/amd64
-    environment:
-      PRISMA_CONFIG_PATH: /app/prisma.yml
-    volumes:
-      - ./server/src/models/prisma:/app
+      - db
+    entrypoint: [ "sh", "-c", "npx prisma migrate deploy --schema=./src/models/prisma/schema.prisma && npm start" ]
 
   db:
     image: postgres:13
