@@ -16,10 +16,17 @@ const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
       <Guests maxCapacity={maxCapacity} />
       <Price regularPrice={regularPrice} />
       {discount ? <Discount discount={discount} /> : <span>&mdash;</span>}
-      <div className="">
-        <HiSquare2Stack />
-        <HiPencil />
-        <HiTrash />
+
+      <div>
+        <button>
+          <HiSquare2Stack />
+        </button>
+        <button>
+          <HiPencil />
+        </button>
+        <button>
+          <HiTrash />
+        </button>
       </div>
     </div>
   )
@@ -55,8 +62,6 @@ const Price: React.FC<{ regularPrice: number }> = ({ regularPrice }) => {
 
 const Discount: React.FC<{ discount: number }> = ({ discount }) => {
   return (
-    <div className="font-semibold text-green-700">
-      {formatCurrency(discount)}
-    </div>
+    <div className="font-semibold text-green-700">{formatCurrency(discount)}</div>
   )
 }

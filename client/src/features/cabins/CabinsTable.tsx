@@ -6,15 +6,13 @@ import TableRow from './TableRow.tsx'
 import Spinner from '../../ui/Spinner.tsx'
 
 import { getAllCabins } from '../../services/cabins.api.ts'
-import { CABINS } from '../../utils/constants.ts'
+import { CabinI } from '../../types/cabins.interface.ts'
 
 const CabinsTable = () => {
-  const { isLoading, data } = useQuery({
+  const { isLoading, data: { data: cabins } = {} } = useQuery({
     queryKey: ['cabins'],
     queryFn: getAllCabins,
   })
-
-  console.log(data?.data)
 
   return (
     <Table>
@@ -30,7 +28,7 @@ const CabinsTable = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        CABINS.map(cabin => <TableRow cabin={cabin} key={cabin.id} />)
+        cabins.map((cabin: CabinI) => <TableRow cabin={cabin} key={cabin.id} />)
       )}
     </Table>
   )

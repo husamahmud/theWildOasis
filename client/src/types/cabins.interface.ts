@@ -1,6 +1,6 @@
 export interface CabinI {
   id: string
-  // createdAt: string
+  createdAt: string
   cabinNumber: string
   maxCapacity: number
   regularPrice: number
