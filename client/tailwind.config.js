@@ -45,6 +45,8 @@ export default {
         'color-grey-50': '#f9fafb',
         'color-grey-400': '#9ca3af',
         'color-brand-600': '#4f46e5',
+
+        'backdrop-color': 'rgba(255, 255, 255, 0.1)',
       },
       boxShadow: {
         sm: '0 1px 2px rgba(0, 0, 0, 0.04)',
