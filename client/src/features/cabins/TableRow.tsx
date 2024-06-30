@@ -1,5 +1,5 @@
 import React from 'react'
-import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2'
+import { HiPencil, HiTrash } from 'react-icons/hi2'
 
 import { formatCurrency } from '../../utils/helpers.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
@@ -18,9 +18,6 @@ const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
       {discount ? <Discount discount={discount} /> : <span>&mdash;</span>}
 
       <div>
-        <button>
-          <HiSquare2Stack />
-        </button>
         <button>
           <HiPencil />
         </button>
@@ -44,7 +41,7 @@ const Img: React.FC<{ image: string }> = ({ image }) => {
   )
 }
 
-const Cabin: React.FC<{ cabinNumber: string }> = ({ cabinNumber }) => {
+const Cabin: React.FC<{ cabinNumber: number }> = ({ cabinNumber }) => {
   return <div className="font-semibold text-color-grey-600">{cabinNumber}</div>
 }
 

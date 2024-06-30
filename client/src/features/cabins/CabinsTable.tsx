@@ -1,18 +1,13 @@
-import { useQuery } from '@tanstack/react-query'
-
 import Table from '../../ui/Table.tsx'
 import TableHeader from '../../ui/TableHeader.tsx'
 import TableRow from './TableRow.tsx'
 import Spinner from '../../ui/Spinner.tsx'
 
-import { getAllCabins } from '../../services/cabins.api.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
+import { useCabins } from './useCabins.ts'
 
 const CabinsTable = () => {
-  const { isLoading, data: { data: cabins } = {} } = useQuery({
-    queryKey: ['cabins'],
-    queryFn: getAllCabins,
-  })
+  const { isLoading, cabins, error } = useCabins()
 
   return (
     <Table>
@@ -25,7 +20,7 @@ const CabinsTable = () => {
         <div></div>
       </TableHeader>
 
-      {isLoading ? (
+      {isLoading && !error ? (
         <Spinner />
       ) : (
         cabins.map((cabin: CabinI) => <TableRow cabin={cabin} key={cabin.id} />)

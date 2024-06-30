@@ -1,61 +1,133 @@
-import Form from '../../ui/Form.tsx'
+import { useMutation } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { useQueryClient } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
+
 import FormRow from '../../ui/FormRow.tsx'
-import Input from '../../ui/Input.tsx'
-import Textarea from '../../ui/Textarea.tsx'
 import Button from '../../ui/Button.tsx'
 
+import { addCabin } from '../../services/cabins.api.ts'
+import { CabinI } from '../../types/cabins.interface.ts'
+
 const AddCabin = () => {
+  const { register, handleSubmit, reset } = useForm()
+
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation({
+    mutationFn: addCabin,
+    onSuccess: () => {
+      toast.success('New cabin added successfully!')
+      queryClient.invalidateQueries({ queryKey: ['cabins'] })
+      reset()
+    },
+    onError: err => toast.error(err.message),
+  })
+
+  const onSubmit = (data: CabinI) => {
+    mutate({
+      ...data,
+      maxCapacity: +data.maxCapacity,
+      regularPrice: +data.regularPrice,
+      discount: +data.discount,
+    })
+    console.log(data)
+  }
+
   return (
-    <Form>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-[60rem] overflow-hidden rounded-md border border-grey-100 bg-grey-0 px-16 py-10 text-xl">
       <FormRow>
-        <label className="text-2xl font-medium" htmlFor="name">
+        <label className="text-2xl font-medium" htmlFor="cabinNumber">
           Cabin name
         </label>
-        <Input type="text" id="name" />
+        <input
+          type="text"
+          id="cabinNumber"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('cabinNumber', { required: 'This field is required' })}
+        />
       </FormRow>
 
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="maxCapacity">
           Maximum capacity
         </label>
-        <Input type="text" id="maxCapacity" />
+        <input
+          type="number"
+          id="maxCapacity"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('maxCapacity', {
+            required: 'This field is required',
+            min: {
+              value: 1,
+              message: 'Capacity should be at least 1',
+            },
+          })}
+        />
       </FormRow>
 
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="regularPrice">
           Regular price
         </label>
-        <Input type="number" id="regularPrice" />
+        <input
+          type="number"
+          id="regularPrice"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('regularPrice', {
+            required: 'This field is required',
+            min: {
+              value: 1,
+              message: 'Price should be at least 1',
+            },
+          })}
+        />
       </FormRow>
 
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="discount">
           Discount
         </label>
-        <Input type="number" id="discount" />
+        <input
+          type="number"
+          id="discount"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('discount', { required: 'This field is required' })}
+        />
       </FormRow>
 
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="description">
           Description for website
         </label>
-        <Textarea id="description" />
+        <input
+          type="text"
+          id="description"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('description', { required: 'This field is required' })}
+        />
       </FormRow>
 
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="image">
           Cabin photo url
         </label>
-        <Input type="text" id="image" />
+        <input
+          type="text"
+          id="image"
+          className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
+          {...register('image', { required: 'This field is required' })}
+        />
       </FormRow>
 
       <FormRow hasButton={true}>
         <Button variant="secondary" type="reset">
           Cancel
         </Button>
-        <Button type="button">Add cabin</Button>
+        <Button type="submit">Add cabin</Button>
       </FormRow>
-    </Form>
+    </form>
   )
 }
 
