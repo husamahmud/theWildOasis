@@ -15,12 +15,12 @@ export class CabinsValidations {
     error: Joi.ValidationError | null
   }> {
     const createSchema = Joi.object({
-      cabinNumber: Joi.string().required(),
+      cabinNumber: Joi.string().trim().trim().required(),
       maxCapacity: Joi.number().required(),
       regularPrice: Joi.number().required(),
       discount: Joi.number().required(),
-      description: Joi.string().required(),
-      image: Joi.string().required(),
+      description: Joi.string().trim().required(),
+      image: Joi.string().trim().required(),
       Bookings: Joi.array().optional(),
     })
 
