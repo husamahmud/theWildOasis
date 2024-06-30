@@ -8,9 +8,11 @@ import Button from '../../ui/Button.tsx'
 
 import { addCabin } from '../../services/cabins.api.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
+import React from 'react'
 
-const AddCabin = () => {
-  const { register, handleSubmit, reset } = useForm()
+const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
+  const { register, handleSubmit, reset, formState } = useForm<CabinI>()
+  const { errors } = formState
 
   const queryClient = useQueryClient()
   const { mutate } = useMutation({
@@ -19,6 +21,7 @@ const AddCabin = () => {
       toast.success('New cabin added successfully!')
       queryClient.invalidateQueries({ queryKey: ['cabins'] })
       reset()
+      closeForm.closeForm()
     },
     onError: err => toast.error(err.message),
   })
@@ -30,17 +33,22 @@ const AddCabin = () => {
       regularPrice: +data.regularPrice,
       discount: +data.discount,
     })
-    console.log(data)
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[60rem] overflow-hidden rounded-md border border-grey-100 bg-grey-0 px-16 py-10 text-xl">
+      className="w-[50rem] overflow-hidden rounded-md bg-grey-0 px-16 py-10 text-xl">
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="cabinNumber">
-          Cabin name
+          Cabin number
+          {errors.cabinNumber && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.cabinNumber.message as string}
+            </p>
+          )}
         </label>
+
         <input
           type="text"
           id="cabinNumber"
@@ -52,6 +60,11 @@ const AddCabin = () => {
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="maxCapacity">
           Maximum capacity
+          {errors.maxCapacity && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.maxCapacity.message as string}
+            </p>
+          )}
         </label>
         <input
           type="number"
@@ -70,6 +83,11 @@ const AddCabin = () => {
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="regularPrice">
           Regular price
+          {errors.regularPrice && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.regularPrice.message as string}
+            </p>
+          )}
         </label>
         <input
           type="number"
@@ -88,6 +106,11 @@ const AddCabin = () => {
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="discount">
           Discount
+          {errors.regularPrice && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.regularPrice.message as string}
+            </p>
+          )}
         </label>
         <input
           type="number"
@@ -100,6 +123,11 @@ const AddCabin = () => {
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="description">
           Description for website
+          {errors.regularPrice && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.regularPrice.message as string}
+            </p>
+          )}
         </label>
         <input
           type="text"
@@ -112,6 +140,11 @@ const AddCabin = () => {
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="image">
           Cabin photo url
+          {errors.image && (
+            <p className="text-2xl font-semibold text-red-700">
+              {errors.image.message as string}
+            </p>
+          )}
         </label>
         <input
           type="text"

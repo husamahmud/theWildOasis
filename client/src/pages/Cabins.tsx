@@ -4,6 +4,7 @@ import CabinsTable from '../features/cabins/CabinsTable.tsx'
 import Row from '../ui/Row.tsx'
 import Button from '../ui/Button.tsx'
 import AddCabin from '../features/cabins/AddCabin.tsx'
+import Modal from '../ui/Modal.tsx'
 
 export default function Cabins() {
   const [openForm, setOpenForm] = useState(false)
@@ -21,7 +22,11 @@ export default function Cabins() {
         <Button onClick={() => setOpenForm(!openForm)}>Add new cabin</Button>
       </Row>
 
-      {openForm && <AddCabin />}
+      {openForm && (
+        <Modal onClick={() => setOpenForm(!openForm)}>
+          <AddCabin closeForm={() => setOpenForm(!openForm)} />
+        </Modal>
+      )}
     </>
   )
 }

@@ -3,6 +3,7 @@ import { HiPencil, HiTrash } from 'react-icons/hi2'
 
 import { formatCurrency } from '../../utils/helpers.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
+import Button from '../../ui/Button.tsx'
 
 const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
   const { cabinNumber, maxCapacity, regularPrice, discount, image } = cabin
@@ -17,13 +18,13 @@ const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
       <Price regularPrice={regularPrice} />
       {discount ? <Discount discount={discount} /> : <span>&mdash;</span>}
 
-      <div>
-        <button>
+      <div className="flex gap-3">
+        <Button variant="secondary">
           <HiPencil />
-        </button>
-        <button>
+        </Button>
+        <Button variant="primary">
           <HiTrash />
-        </button>
+        </Button>
       </div>
     </div>
   )
