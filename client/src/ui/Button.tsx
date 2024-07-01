@@ -19,6 +19,7 @@ const Button: React.FC<{
   className?: string
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
 }> = ({
   children,
   size = 'medium',
@@ -26,11 +27,13 @@ const Button: React.FC<{
   className,
   onClick,
   type,
+  disabled,
 }) => {
   return (
     <button
       className={`${SIZES[size]} ${VARIANTS[variant]} ${className} rounded-sm border-none shadow-sm`}
       onClick={onClick}
+      disabled={disabled}
       type={type}>
       {children}
     </button>

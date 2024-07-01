@@ -3,7 +3,7 @@ import { useState } from 'react'
 import CabinsTable from '../features/cabins/CabinsTable.tsx'
 import Row from '../ui/Row.tsx'
 import Button from '../ui/Button.tsx'
-import AddCabin from '../features/cabins/AddCabin.tsx'
+import CreateEditCabin from '../features/cabins/CreateEditCabin.tsx'
 import Modal from '../ui/Modal.tsx'
 
 export default function Cabins() {
@@ -24,7 +24,7 @@ export default function Cabins() {
 
       {openForm && (
         <Modal onClick={() => setOpenForm(!openForm)}>
-          <AddCabin closeForm={() => setOpenForm(!openForm)} />
+          <CreateEditCabin closeForm={() => setOpenForm(!openForm)} />
         </Modal>
       )}
     </>

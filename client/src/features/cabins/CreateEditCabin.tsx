@@ -10,7 +10,7 @@ import { addCabin } from '../../services/cabins.api.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
 import React from 'react'
 
-const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
+const CreateEditCabin: React.FC<{ closeForm: () => void }> = closeForm => {
   const { register, handleSubmit, reset, formState } = useForm<CabinI>()
   const { errors } = formState
 
@@ -164,4 +164,4 @@ const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
   )
 }
 
-export default AddCabin
+export default CreateEditCabin

@@ -47,3 +47,7 @@
 - [ ] Implement main utils
 - [x] Implement main styles
 - [ ] Implement main i18n
+
+## NOTE:
+
+- [x] Add trim to all inputs
