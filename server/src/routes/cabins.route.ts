@@ -14,9 +14,9 @@ const {
 
 router
   .post('/', createCabin)
-  .post('/:cabinNumber', updateCabin)
+  .post('/:id', updateCabin)
   .get('/', getAllCabins)
-  .get('/:cabinNumber', getCabin)
-  .delete('/:cabinNumber', deleteCabin)
+  .get('/:id', getCabin)
+  .delete('/:id', deleteCabin)
 
 export default router
