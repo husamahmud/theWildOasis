@@ -28,3 +28,13 @@ export async function addCabin(cabin: CabinI) {
     }
   }
 }
+
+export async function deleteCabin(id: string) {
+  try {
+    const data = await axios.delete(`${BASE_URL}/cabins/${id}`)
+    return data?.data
+  } catch (error) {
+    console.error('Error:', error)
+    throw new Error('Error deleting cabin')
+  }
+}

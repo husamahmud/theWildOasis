@@ -1,12 +1,15 @@
 import React from 'react'
 import { HiPencil, HiTrash } from 'react-icons/hi2'
 
-import { formatCurrency } from '../../utils/helpers.ts'
-import { CabinI } from '../../types/cabins.interface.ts'
 import Button from '../../ui/Button.tsx'
 
+import { formatCurrency } from '../../utils/helpers.ts'
+import { CabinI } from '../../types/cabins.interface.ts'
+import useDeleteCabin from './useDeleteCabin.ts'
+
 const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
-  const { cabinNumber, maxCapacity, regularPrice, discount, image } = cabin
+  const { id, cabinNumber, maxCapacity, regularPrice, discount, image } = cabin
+  const { mutate, isDeleting } = useDeleteCabin()
 
   return (
     <div
@@ -34,7 +37,7 @@ const TableRow: React.FC<{ cabin: CabinI; key: string }> = ({ cabin }) => {
         <Button variant="secondary">
           <HiPencil />
         </Button>
-        <Button variant="primary">
+        <Button variant="primary" disabled={isDeleting} onClick={() => mutate(id)}>
           <HiTrash />
         </Button>
       </div>
