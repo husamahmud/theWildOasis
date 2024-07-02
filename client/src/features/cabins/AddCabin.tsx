@@ -1,30 +1,16 @@
-import { useMutation } from '@tanstack/react-query'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useQueryClient } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
 
 import FormRow from '../../ui/FormRow.tsx'
 import Button from '../../ui/Button.tsx'
 
-import { addCabin } from '../../services/cabins.api.ts'
 import { CabinI } from '../../types/cabins.interface.ts'
-import React from 'react'
+import useCreateCabin from './useCreateCabin.ts'
 
-const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
+const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
   const { register, handleSubmit, reset, formState } = useForm<CabinI>()
   const { errors } = formState
-
-  const queryClient = useQueryClient()
-  const { mutate } = useMutation({
-    mutationFn: addCabin,
-    onSuccess: () => {
-      toast.success('New cabin added successfully!')
-      queryClient.invalidateQueries({ queryKey: ['cabins'] })
-      reset()
-      closeForm.closeForm()
-    },
-    onError: err => toast.error(err.message),
-  })
+  const { mutate, isCreating } = useCreateCabin()
 
   const onSubmit = (data: CabinI) => {
     mutate({
@@ -33,12 +19,16 @@ const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
       regularPrice: +data.regularPrice,
       discount: +data.discount,
     })
+
+    reset()
+    closeForm()
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[50rem] overflow-hidden rounded-md bg-grey-0 px-16 py-10 text-xl">
+      className="w-[50rem] overflow-hidden rounded-md bg-grey-0 px-16 py-10 text-xl"
+    >
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="cabinNumber">
           Cabin number
@@ -158,7 +148,9 @@ const AddCabin: React.FC<{ closeForm: () => void }> = closeForm => {
         <Button variant="secondary" type="reset">
           Cancel
         </Button>
-        <Button type="submit">Add cabin</Button>
+        <Button type="submit" disabled={isCreating}>
+          Add cabin
+        </Button>
       </FormRow>
     </form>
   )
