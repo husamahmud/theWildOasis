@@ -7,8 +7,6 @@ import { CabinsDto } from '../models/dto/cabins.dto'
 import { CabinsValidations } from '../middlewares/cabins.validations'
 import { CabinsDao } from '../models/dao/cabins.dao'
 
-// import { generateImageUrl } from '../services/supabase.service'
-
 /**
  * Controller class for handling cabin-related operations.
  */
@@ -40,10 +38,6 @@ export class CabinsController {
         return sendResponse(res, 400, null, 'Cabin already exists')
       }
 
-      // TODO
-      // const imageUrl = await generateImageUrl(cabinData.image)
-      // cabinData.image = imageUrl
-
       // Create the cabin
       const cabin = await CabinsDao.createCabin(cabinData)
       console.log('Cabin created successfully')
@@ -61,7 +55,7 @@ export class CabinsController {
    */
   static async updateCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
-    const cabinNumber = req.params.cabinNumber
+    const id = req.params.id
     const { bookings, ...cabinData } = cabinDto
 
     // Validate cabin data
@@ -74,7 +68,7 @@ export class CabinsController {
     try {
       // Check if the cabin exists
       const existingCabin = await prisma.cabins.findUnique({
-        where: { cabinNumber },
+        where: { id },
       })
       if (!existingCabin) {
         console.error('Error: cabin not found')
@@ -82,7 +76,7 @@ export class CabinsController {
       }
 
       // Update the cabin
-      const cabin = await CabinsDao.updateCabin(cabinNumber, cabinData)
+      const cabin = await CabinsDao.updateCabin(id, cabinData)
       console.log('Cabin updated successfully')
       return sendResponse(res, 200, cabin, 'Cabin updated successfully')
     } catch (error: any) {
@@ -108,15 +102,15 @@ export class CabinsController {
   }
 
   /**
-   * Retrieves a specific cabin by its cabin number.
+   * Retrieves a specific cabin by its id.
    * @param {Request} req - The request object.
    * @param {Response} res - The response object.
    */
   static async getCabin(req: Request, res: Response) {
-    const cabinNumber = req.params.cabinNumber
+    const id = req.params.id
 
     try {
-      const cabin = await CabinsDao.getCabin(cabinNumber)
+      const cabin = await CabinsDao.getCabin(id)
       if (!cabin) {
         console.error('Error: cabin not found')
         return sendResponse(res, 404, null, 'Cabin not found')
@@ -136,10 +130,10 @@ export class CabinsController {
    * @param {Response} res - The response object.
    */
   static async deleteCabin(req: Request, res: Response) {
-    const cabinNumber = req.params.cabinNumber
+    const id = req.params.id
 
     try {
-      const cabin = await CabinsDao.deleteCabin(cabinNumber)
+      const cabin = await CabinsDao.deleteCabin(id)
       if (!cabin) {
         console.error('Error: cabin not found')
         return sendResponse(res, 404, null, 'Cabin not found')
