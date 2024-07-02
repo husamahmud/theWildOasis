@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
 
 import FormRow from '../../ui/FormRow.tsx'
@@ -6,28 +7,56 @@ import Button from '../../ui/Button.tsx'
 
 import { CabinI } from '../../types/cabins.interface.ts'
 import useCreateCabin from './useCreateCabin.ts'
+import useUpdateCabin from './useUpdateCabin.ts'
 
-const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
-  const { register, handleSubmit, reset, formState } = useForm<CabinI>()
+const CreateEditCabin: React.FC<{
+  closeForm: () => void
+  cabinToEdit?: CabinI
+}> = ({ closeForm, cabinToEdit = {} }) => {
+  const { ...cabinValues } = cabinToEdit
+  const isEditSession = Object.keys(cabinValues).length > 0
+
+  const { register, handleSubmit, formState } = useForm<CabinI>({
+    defaultValues: isEditSession ? cabinValues : {},
+  })
   const { errors } = formState
-  const { mutate, isCreating } = useCreateCabin()
+  const { createCabin, isCreating } = useCreateCabin()
+  const { updateCabin, isUpdating } = useUpdateCabin()
+  const isSubmitting = isCreating || isUpdating
 
   const onSubmit = (data: CabinI) => {
-    mutate({
+    const cabinData = {
       ...data,
       maxCapacity: +data.maxCapacity,
       regularPrice: +data.regularPrice,
       discount: +data.discount,
-    })
+    }
 
-    reset()
+    if (isEditSession) {
+      updateCabin(
+        { ...cabinData },
+        {
+          onSuccess: () => toast.success('Cabin updated successfully!'),
+          onError: (err) => toast.error(err.message),
+        },
+      )
+    } else {
+      createCabin(
+        { ...cabinData },
+        {
+          onSuccess: () => toast.success('New cabin added successfully!'),
+          onError: (err) => toast.error(err.message),
+        },
+      )
+    }
+
     closeForm()
   }
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[50rem] overflow-hidden rounded-md bg-grey-0 px-16 py-10 text-xl"
+      className="w-[50rem] overflow-hidden rounded-md bg-grey-0 px-16 pb-10 pt-2 text-xl"
     >
       <FormRow>
         <label className="text-2xl font-medium" htmlFor="cabinNumber">
@@ -57,7 +86,7 @@ const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
           )}
         </label>
         <input
-          type="number"
+          type="text"
           id="maxCapacity"
           className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
           {...register('maxCapacity', {
@@ -80,7 +109,7 @@ const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
           )}
         </label>
         <input
-          type="number"
+          type="text"
           id="regularPrice"
           className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
           {...register('regularPrice', {
@@ -103,7 +132,7 @@ const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
           )}
         </label>
         <input
-          type="number"
+          type="text"
           id="discount"
           className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
           {...register('discount', { required: 'This field is required' })}
@@ -148,12 +177,12 @@ const AddCabin: React.FC<{ closeForm: () => void }> = ({ closeForm }) => {
         <Button variant="secondary" type="reset">
           Cancel
         </Button>
-        <Button type="submit" disabled={isCreating}>
-          Add cabin
+        <Button type="submit" disabled={isSubmitting}>
+          {isEditSession ? 'Edit cabin' : 'Add cabin'}
         </Button>
       </FormRow>
     </form>
   )
 }
 
-export default AddCabin
+export default CreateEditCabin
