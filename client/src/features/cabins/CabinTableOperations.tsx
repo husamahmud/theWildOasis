@@ -1,8 +1,18 @@
 import SortBy from '../../ui/SortBy.tsx'
+import Filter from '../../ui/Filter.tsx'
 
 const CabinTableOperations = () => {
   return (
     <div className="flex items-center gap-6">
+      <Filter
+        filterField="discount"
+        options={[
+          { value: 'all', label: 'All' },
+          { value: 'no-discount', label: 'No discount' },
+          { value: 'with-discount', label: 'With discount' },
+        ]}
+      />
+
       <SortBy
         options={[
           { value: 'cabinNumber-asc', label: 'Sort by name (A-Z)' },

@@ -4,6 +4,7 @@ import Table from '../../ui/Table.tsx'
 import TableHeader from '../../ui/TableHeader.tsx'
 import TableRow from './TableRow.tsx'
 import Spinner from '../../ui/Spinner.tsx'
+import Empty from '../../ui/Empty.tsx'
 
 import { CabinI } from '../../types/cabins.interface.ts'
 import { useCabins } from './useCabins.ts'
@@ -16,14 +17,22 @@ const CabinsTable = () => {
   const [searchParams] = useSearchParams()
 
   if (isLoading) return <Spinner />
-  if (!cabins.length) return <p>No cabins found</p>
+  if (!cabins.length) return <Empty resourceName="cabins" />
+
+  // Filter
+  const discount = searchParams.get('discount')
+  const filteredCabins = cabins.filter((cabin: CabinI) => {
+    if (discount === 'no-discount') return cabin.discount === 0
+    if (discount === 'with-discount') return cabin.discount > 0
+    return true
+  })
 
   // Sort
   const sortBy = searchParams.get('sortBy') || 'cabinNumber-asc'
   const [field, direction] = sortBy.split('-') as [SortedFiled, SortDirection]
   const modifier = direction === 'asc' ? 1 : -1
 
-  const sortedCabins = cabins.sort(
+  const sortedCabins = filteredCabins.sort(
     (a: CabinI, b: CabinI) => (a[field] - b[field]) * modifier,
   )
 
