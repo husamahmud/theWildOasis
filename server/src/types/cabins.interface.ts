@@ -1,4 +1,4 @@
-import { BookingI } from './booking.interface'
+import { BookingI } from './bookings.interface'
 
 export interface CabinI {
   id: string;

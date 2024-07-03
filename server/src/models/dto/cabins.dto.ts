@@ -1,5 +1,5 @@
 import { CabinI } from '../../types/cabins.interface'
-import { BookingI } from '../../types/booking.interface'
+import { BookingI } from '../../types/bookings.interface'
 
 /**
  * Data Transfer Object (DTO) for cabin details.

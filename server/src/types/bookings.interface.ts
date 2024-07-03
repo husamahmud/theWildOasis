@@ -1,5 +1,5 @@
 import { CabinI } from './cabins.interface'
-import { GuestI } from './guest.interface'
+import { GuestsI } from './guests.interface'
 
 export interface BookingI {
   id: string;
@@ -16,6 +16,6 @@ export interface BookingI {
   observation: string;
   cabinId: string;
   guestId: string;
-  guest: GuestI;
+  guest: GuestsI;
   cabin: CabinI;
 }
