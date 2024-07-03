@@ -44,6 +44,24 @@ export class GuestsDao {
   }
 
   /**
+   * Retrieves a specific guest entry from the database by their email address.
+   * @param {string} email - The email address of the guest to be retrieved.
+   * @returns {Promise<GuestsI | null>} - A promise that resolves to the guest object if found, or null if not found.
+   **/
+  static async getGuestByEmail(email: string): Promise<GuestsI | null> {
+    return prisma.guests.findUnique({ where: { email } })
+  }
+
+  /**
+   * Retrieves a specific guest entry from the database by their national ID.
+   * @param {string} nationalID - The national ID of the guest to be retrieved.
+   * @returns {Promise<GuestsI | null>} - A promise that resolves to the guest object if found, or null if not found.
+   **/
+  static async getGuestByNationalID(nationalID: string): Promise<GuestsI | null> {
+    return prisma.guests.findUnique({ where: { nationalID } })
+  }
+
+  /**
    * Deletes a specific guest entry from the database by its unique identifier.
    * @param {string} id - The unique identifier of the guest to be deleted.
    * @returns {Promise<GuestsI | null>} - A promise that resolves to the deleted guest object if found, or null if not found.
