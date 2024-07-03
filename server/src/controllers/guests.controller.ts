@@ -63,15 +63,20 @@ export class GuestsController {
       }
 
       // Check if the guest's email or national ID already exists
-      const guestEmailExists = await GuestsDao.getGuestByEmail(guestData.email)
-      if (guestEmailExists && guestEmailExists.id !== id) {
-        console.error('Error: guest email already exists')
-        return sendResponse(res, 400, null, 'Guest email already exists')
+      if (guestData.email) {
+        const guestEmailExists = await GuestsDao.getGuestByEmail(guestData.email)
+        if (guestEmailExists) {
+          console.error('Error: guest email already exists')
+          return sendResponse(res, 400, null, 'Guest email already exists')
+        }
       }
-      const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestData.nationalID)
-      if (guestNationalIDExists && guestNationalIDExists.id !== id) {
-        console.error('Error: guest national ID already exists')
-        return sendResponse(res, 400, null, 'Guest national ID already exists')
+      // Check if the guest's national ID already exists
+      if (guestData.nationalID) {
+        const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestData.nationalID)
+        if (guestNationalIDExists) {
+          console.error('Error: guest national ID already exists')
+          return sendResponse(res, 400, null, 'Guest national ID already exists')
+        }
       }
 
       // Update the guest

@@ -17,6 +17,7 @@ export class GuestsValidations {
     const createSchema = Joi.object({
       fullName: Joi.string().trim().required(),
       email: Joi.string().trim().required(),
+      nationality: Joi.string().trim().required(),
       nationalID: Joi.string().trim().required(),
       countryFlag: Joi.string().trim().required(),
       Bookings: Joi.array().optional(),
@@ -39,11 +40,12 @@ export class GuestsValidations {
     error: Joi.ValidationError | null
   }> {
     const updateSchema = Joi.object({
-      fullName: Joi.string(),
-      email: Joi.string(),
-      nationalID: Joi.string(),
-      countryFlag: Joi.string(),
-      Bookings: Joi.array(),
+      fullName: Joi.string().trim(),
+      email: Joi.string().trim(),
+      nationality: Joi.string().trim(),
+      nationalID: Joi.string().trim(),
+      countryFlag: Joi.string().trim(),
+      Bookings: Joi.array().optional(),
     }).min(1)
 
     try {
