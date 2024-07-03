@@ -44,6 +44,15 @@ export class CabinsDao {
   }
 
   /**
+   * Retrieves a specific cabin entry from the database by its cabin number.
+   * @param {string} cabinNumber - The cabin number of the cabin to be retrieved.
+   * @returns {Promise<CabinI | null>} - A promise that resolves to the cabin object if found, or null if not found.
+   **/
+  static async getCabinByNumber(cabinNumber: string): Promise<CabinI | null> {
+    return prisma.cabins.findUnique({ where: { cabinNumber } })
+  }
+
+  /**
    * Deletes a specific cabin entry from the database by its cabin number.
    * @param {string} id - The unique identifier of the cabin to be deleted.
    * @returns {Promise<CabinI | null>} - A promise that resolves to the deleted cabin object if found, or null if not found.

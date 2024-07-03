@@ -1,8 +1,6 @@
 import { Request, Response } from 'express'
 
-import prisma from '../models/prisma/prisma-client'
 import sendResponse from '../utils/sendRequest'
-
 import { CabinsDto } from '../models/dto/cabins.dto'
 import { CabinsValidations } from '../middlewares/cabins.validations'
 import { CabinsDao } from '../models/dao/cabins.dao'
@@ -13,8 +11,6 @@ import { CabinsDao } from '../models/dao/cabins.dao'
 export class CabinsController {
   /**
    * Handles the creation of a new cabin.
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
    */
   static async createCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
@@ -30,9 +26,7 @@ export class CabinsController {
     try {
       // Check if the cabin already exists
       const cabinNumber = cabinData.cabinNumber
-      const existingCabin = await prisma.cabins.findUnique({
-        where: { cabinNumber },
-      })
+      const existingCabin = await CabinsDao.getCabinByNumber(cabinNumber)
       if (existingCabin) {
         console.error('Error: cabin already exists')
         return sendResponse(res, 400, null, 'Cabin already exists')
@@ -50,8 +44,6 @@ export class CabinsController {
 
   /**
    * Handles the updating of an existing cabin.
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
    */
   static async updateCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
@@ -67,9 +59,7 @@ export class CabinsController {
 
     try {
       // Check if the cabin exists
-      const existingCabin = await prisma.cabins.findUnique({
-        where: { id },
-      })
+      const existingCabin = await CabinsDao.getCabin(id)
       if (!existingCabin) {
         console.error('Error: cabin not found')
         return sendResponse(res, 404, null, 'Cabin not found')
@@ -87,8 +77,6 @@ export class CabinsController {
 
   /**
    * Retrieves all cabins from the database.
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
    */
   static async getAllCabins(req: Request, res: Response) {
     try {
@@ -103,8 +91,6 @@ export class CabinsController {
 
   /**
    * Retrieves a specific cabin by its id.
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
    */
   static async getCabin(req: Request, res: Response) {
     const id = req.params.id
@@ -126,8 +112,6 @@ export class CabinsController {
 
   /**
    * Deletes a specific cabin by its cabin number.
-   * @param {Request} req - The request object.
-   * @param {Response} res - The response object.
    */
   static async deleteCabin(req: Request, res: Response) {
     const id = req.params.id
