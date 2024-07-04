@@ -25,6 +25,6 @@ export class CabinsDto implements Partial<CabinI> {
     this.discount = bodyRequest.discount
     this.description = bodyRequest.description
     this.image = bodyRequest.image
-    this.bookings = bodyRequest.booking
+    this.bookings = bodyRequest.bookings
   }
 }

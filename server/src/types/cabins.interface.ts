@@ -8,5 +8,5 @@ export interface CabinI {
   discount: number;
   description: string;
   image: string;
-  booking?: BookingsI[];
+  bookings?: BookingsI[];
 }

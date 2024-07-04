@@ -23,6 +23,6 @@ export class GuestsDto implements Partial<GuestsI> {
     this.nationalID = bodyRequest.nationalID
     this.nationality = bodyRequest.nationality
     this.countryFlag = bodyRequest.countryFlag
-    this.bookings = bodyRequest.booking
+    this.bookings = bodyRequest.bookings
   }
 }

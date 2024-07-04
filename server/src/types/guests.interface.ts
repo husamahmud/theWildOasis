@@ -8,5 +8,5 @@ export interface GuestsI {
   nationalID: string;
   nationality: string;
   countryFlag: string;
-  booking?: BookingsI[];
+  bookings?: BookingsI[];
 }

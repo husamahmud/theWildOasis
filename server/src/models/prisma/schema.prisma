@@ -24,7 +24,7 @@ model Guests {
   nationality String
   countryFlag String
 
-  Booking Booking[]
+  Bookings Bookings[]
 }
 
 model Cabins {
@@ -38,10 +38,10 @@ model Cabins {
   description  String
   image        String
 
-  Booking Booking[]
+  Bookings Bookings[]
 }
 
-model Booking {
+model Bookings {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
 
