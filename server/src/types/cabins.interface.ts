@@ -1,4 +1,4 @@
-import { BookingI } from './bookings.interface'
+import { BookingsI } from './bookings.interface'
 
 export interface CabinI {
   id: string;
@@ -8,5 +8,5 @@ export interface CabinI {
   discount: number;
   description: string;
   image: string;
-  booking?: BookingI[];
+  booking?: BookingsI[];
 }

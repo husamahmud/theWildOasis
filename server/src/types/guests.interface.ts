@@ -1,4 +1,4 @@
-import { BookingI } from './bookings.interface'
+import { BookingsI } from './bookings.interface'
 
 export interface GuestsI {
   id: string;
@@ -8,5 +8,5 @@ export interface GuestsI {
   nationalID: string;
   nationality: string;
   countryFlag: string;
-  booking?: BookingI[];
+  booking?: BookingsI[];
 }

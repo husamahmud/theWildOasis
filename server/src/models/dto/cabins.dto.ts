@@ -1,5 +1,5 @@
 import { CabinI } from '../../types/cabins.interface'
-import { BookingI } from '../../types/bookings.interface'
+import { BookingsI } from '../../types/bookings.interface'
 
 /**
  * Data Transfer Object (DTO) for cabin details.
@@ -12,7 +12,7 @@ export class CabinsDto implements Partial<CabinI> {
   discount: number
   description: string
   image: string
-  bookings?: BookingI[]
+  bookings?: BookingsI[]
 
   /**
    * Constructs a new CabinsDto object.

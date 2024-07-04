@@ -1,7 +1,7 @@
 import { CabinI } from './cabins.interface'
 import { GuestsI } from './guests.interface'
 
-export interface BookingI {
+export interface BookingsI {
   id: string;
   createdAt: Date;
   startDate: Date;

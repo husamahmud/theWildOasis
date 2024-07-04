@@ -1,5 +1,5 @@
 import { GuestsI } from '../../types/guests.interface'
-import { BookingI } from '../../types/bookings.interface'
+import { BookingsI } from '../../types/bookings.interface'
 
 /**
  * Data Transfer Object (DTO) for guest details.
@@ -11,7 +11,7 @@ export class GuestsDto implements Partial<GuestsI> {
   nationalID: string
   nationality: string
   countryFlag: string
-  bookings?: BookingI[]
+  bookings?: BookingsI[]
 
   /**
    * Constructs a new GuestsDto object.
