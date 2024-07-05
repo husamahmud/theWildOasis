@@ -25,7 +25,7 @@ export class BookingsDao {
    * Get all bookings
    * @returns All bookings
    **/
-  static async getBookings(): Promise<BookingsI[]> {
+  static async getAllBookings(): Promise<BookingsI[]> {
     try {
       return await prisma.bookings.findMany()
     } catch (error: any) {
@@ -87,6 +87,46 @@ export class BookingsDao {
       return await prisma.bookings.delete({ where: { id } })
     } catch (error: any) {
       console.error('Error in BookingsDao -> deleteBooking', error)
+      throw new Error(error.message)
+    }
+  }
+
+  /**
+   * Get all bookings that overlap with the date range
+   * @param cabinId - Cabin id
+   * @param startDate - Start date
+   * @param endDate - End date
+   * @returns All bookings that overlap with the date range
+   **/
+  static async getOverlappingBookings(cabinId: string, startDate: Date, endDate: Date): Promise<BookingsI[]> {
+    try {
+      return await prisma.bookings.findMany({
+        where: {
+          cabinId,
+          OR: [
+            {
+              AND: [
+                { startDate: { lte: startDate } },
+                { endDate: { gte: startDate } },
+              ],
+            },
+            {
+              AND: [
+                { startDate: { lte: endDate } },
+                { endDate: { gte: endDate } },
+              ],
+            },
+            {
+              AND: [
+                { startDate: { gte: startDate } },
+                { endDate: { lte: endDate } },
+              ],
+            },
+          ],
+        },
+      })
+    } catch (error: any) {
+      console.error('Error in BookingsDao -> getOverlappingBookings', error)
       throw new Error(error.message)
     }
   }

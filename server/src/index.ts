@@ -15,7 +15,11 @@ app.use(cors())
  * Root route - Info about cabins endpoints
  **/
 app.get('/', (req, res) => {
-  res.json({ '/api/v1/cabins': 'for cabins routes 🏡' })
+  res.json({
+    '/api/v1/cabins': 'for cabins routes 🏡',
+    '/api/v1/guests': 'for guests routes 👨‍👩‍👧‍👦',
+    '/api/v1/bookings': 'for bookings routes 📅',
+  })
 })
 
 /**
@@ -23,9 +27,11 @@ app.get('/', (req, res) => {
  **/
 import CabinsRoute from './routes/cabins.route'
 import GuestsRoute from './routes/guests.route'
+import BookingsRoute from './routes/bookings.route'
 
 app.use('/api/v1/cabins', CabinsRoute)
 app.use('/api/v1/guests', GuestsRoute)
+app.use('/api/v1/bookings', BookingsRoute)
 
 /**
  * Start the server
