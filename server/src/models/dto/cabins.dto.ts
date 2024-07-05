@@ -1,5 +1,4 @@
 import { CabinI } from '../../types/cabins.interface'
-import { BookingsI } from '../../types/bookings.interface'
 
 /**
  * Data Transfer Object (DTO) for cabin details.
@@ -12,7 +11,6 @@ export class CabinsDto implements Partial<CabinI> {
   discount: number
   description: string
   image: string
-  bookings?: BookingsI[]
 
   /**
    * Constructs a new CabinsDto object.
@@ -25,6 +23,5 @@ export class CabinsDto implements Partial<CabinI> {
     this.discount = bodyRequest.discount
     this.description = bodyRequest.description
     this.image = bodyRequest.image
-    this.bookings = bodyRequest.bookings
   }
 }

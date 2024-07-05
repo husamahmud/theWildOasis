@@ -14,10 +14,9 @@ export class CabinsController {
    */
   static async createCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
-    const { bookings, ...cabinData } = cabinDto
 
     // Validate cabin data
-    const { error } = await CabinsValidations.createCabin(cabinData)
+    const { error } = await CabinsValidations.createCabin(cabinDto)
     if (error) {
       console.error('Error: cabin validation', error)
       return sendResponse(res, 400, null, error)
@@ -25,7 +24,7 @@ export class CabinsController {
 
     try {
       // Check if the cabin already exists
-      const cabinNumber = cabinData.cabinNumber
+      const cabinNumber = cabinDto.cabinNumber
       const existingCabin = await CabinsDao.getCabinByNumber(cabinNumber)
       if (existingCabin) {
         console.error('Error: cabin already exists')
@@ -33,7 +32,7 @@ export class CabinsController {
       }
 
       // Create the cabin
-      const cabin = await CabinsDao.createCabin(cabinData)
+      const cabin = await CabinsDao.createCabin(cabinDto)
       console.log('Cabin created successfully')
       return sendResponse(res, 201, cabin, 'Cabin created successfully')
     } catch (error: any) {
@@ -48,10 +47,9 @@ export class CabinsController {
   static async updateCabin(req: Request, res: Response) {
     const cabinDto = new CabinsDto(req.body)
     const id = req.params.id
-    const { bookings, ...cabinData } = cabinDto
 
     // Validate cabin data
-    const { error } = await CabinsValidations.updateCabin(cabinData)
+    const { error } = await CabinsValidations.updateCabin(cabinDto)
     if (error) {
       console.error('Error: cabin validation', error)
       return sendResponse(res, 400, null, error)
@@ -66,7 +64,7 @@ export class CabinsController {
       }
 
       // Update the cabin
-      const cabin = await CabinsDao.updateCabin(id, cabinData)
+      const cabin = await CabinsDao.updateCabin(id, cabinDto)
       console.log('Cabin updated successfully')
       return sendResponse(res, 200, cabin, 'Cabin updated successfully')
     } catch (error: any) {

@@ -1,5 +1,3 @@
-import { BookingsI } from './bookings.interface'
-
 export interface CabinI {
   id: string;
   cabinNumber: string;
@@ -8,5 +6,4 @@ export interface CabinI {
   discount: number;
   description: string;
   image: string;
-  bookings?: BookingsI[];
 }
