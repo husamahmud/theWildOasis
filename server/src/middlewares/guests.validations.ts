@@ -20,7 +20,6 @@ export class GuestsValidations {
       nationality: Joi.string().trim().required(),
       nationalID: Joi.string().trim().required(),
       countryFlag: Joi.string().trim().required(),
-      Bookings: Joi.array().optional(),
     })
 
     try {
@@ -45,7 +44,6 @@ export class GuestsValidations {
       nationality: Joi.string().trim(),
       nationalID: Joi.string().trim(),
       countryFlag: Joi.string().trim(),
-      Bookings: Joi.array().optional(),
     }).min(1)
 
     try {

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 
 import sendResponse from '../utils/sendRequest'
+
 import { GuestsDto } from '../models/dto/guests.dto'
 import { GuestsValidations } from '../middlewares/guests.validations'
 import { GuestsDao } from '../models/dao/guests.dao'
@@ -11,10 +12,9 @@ export class GuestsController {
    */
   static async createGuest(req: Request, res: Response) {
     const guestDto = new GuestsDto(req.body)
-    const { bookings, ...guestData } = guestDto
 
     // Validate guest data
-    const { error } = await GuestsValidations.createGuest(guestData)
+    const { error } = await GuestsValidations.createGuest(guestDto)
     if (error) {
       console.error('Error: guest validation', error)
       return sendResponse(res, 400, null, error)
@@ -22,15 +22,15 @@ export class GuestsController {
 
     try {
       // Check if the guest already exists
-      const guestEmailExists = await GuestsDao.getGuestByEmail(guestData.email)
-      const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestData.nationalID)
+      const guestEmailExists = await GuestsDao.getGuestByEmail(guestDto.email)
+      const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestDto.nationalID)
       if (guestEmailExists || guestNationalIDExists) {
         console.error('Error: guest already exists')
         return sendResponse(res, 400, null, 'Guest already exists')
       }
 
       // Create the guest
-      const newGuest = await GuestsDao.createGuest(guestData)
+      const newGuest = await GuestsDao.createGuest(guestDto)
       console.log('Guest created successfully')
       return sendResponse(res, 201, newGuest, 'Guest created successfully')
     } catch (error: any) {
@@ -45,10 +45,9 @@ export class GuestsController {
   static async updateGuest(req: Request, res: Response) {
     const guestDto = new GuestsDto(req.body)
     const id = req.params.id
-    const { bookings, ...guestData } = guestDto
 
     // Validate guest data
-    const { error } = await GuestsValidations.updateGuest(guestData)
+    const { error } = await GuestsValidations.updateGuest(guestDto)
     if (error) {
       console.error('Error: guest validation', error)
       return sendResponse(res, 400, null, error)
@@ -63,16 +62,17 @@ export class GuestsController {
       }
 
       // Check if the guest's email or national ID already exists
-      if (guestData.email) {
-        const guestEmailExists = await GuestsDao.getGuestByEmail(guestData.email)
+      if (guestDto.email) {
+        const guestEmailExists = await GuestsDao.getGuestByEmail(guestDto.email)
         if (guestEmailExists) {
           console.error('Error: guest email already exists')
           return sendResponse(res, 400, null, 'Guest email already exists')
         }
       }
+
       // Check if the guest's national ID already exists
-      if (guestData.nationalID) {
-        const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestData.nationalID)
+      if (guestDto.nationalID) {
+        const guestNationalIDExists = await GuestsDao.getGuestByNationalID(guestDto.nationalID)
         if (guestNationalIDExists) {
           console.error('Error: guest national ID already exists')
           return sendResponse(res, 400, null, 'Guest national ID already exists')
@@ -80,7 +80,7 @@ export class GuestsController {
       }
 
       // Update the guest
-      const updatedGuest = await GuestsDao.updateGuest(id, guestData)
+      const updatedGuest = await GuestsDao.updateGuest(id, guestDto)
       console.log('Guest updated successfully')
       return sendResponse(res, 200, updatedGuest, 'Guest updated successfully')
     } catch (error: any) {
