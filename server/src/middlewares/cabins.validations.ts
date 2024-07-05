@@ -21,7 +21,6 @@ export class CabinsValidations {
       discount: Joi.number().required(),
       description: Joi.string().trim().required(),
       image: Joi.string().trim().required(),
-      Bookings: Joi.array().optional(),
     })
 
     // Validate the cabin data against the schema
@@ -48,7 +47,6 @@ export class CabinsValidations {
       discount: Joi.number(),
       description: Joi.string(),
       image: Joi.string(),
-      Bookings: Joi.array(),
     }).min(1) // Ensure at least one field is provided for update
 
     try {
