@@ -6,6 +6,8 @@ import validateBookingDates from '../utils/validateBookingDates'
 import { BookingsDto } from '../models/dto/bookings.dto'
 import { BookingsDao } from '../models/dao/bookings.dao'
 import { BookingsValidations } from '../middlewares/bookings.validations'
+import { CabinsDao } from '../models/dao/cabins.dao'
+import { GuestsDao } from '../models/dao/guests.dao'
 
 /**
  *  Controller class for handling bookings-related operations
@@ -16,6 +18,8 @@ export class BookingsController {
    **/
   static async createBooking(req: Request, res: Response) {
     const bookingDto = new BookingsDto(req.body)
+    bookingDto.startDate = new Date(bookingDto.startDate)
+    bookingDto.endDate = new Date(bookingDto.endDate)
 
     // Validate the booking data
     const { error } = await BookingsValidations.createBooking(bookingDto)
@@ -25,8 +29,26 @@ export class BookingsController {
     }
 
     try {
+      // Check if the cabin exists
+      const cabin = await CabinsDao.getCabin(bookingDto.cabinId)
+      if (!cabin) {
+        console.error('Error: Cabin not found')
+        return sendResponse(res, 404, null, 'Cabin not found')
+      }
+
+      // Check if the guest exists
+      const guest = await GuestsDao.getGuest(bookingDto.guestId)
+      if (!guest) {
+        console.error('Error: Guest not found')
+        return sendResponse(res, 404, null, 'Guest not found')
+      }
+
       // Check if the start date is in the past
-      const dataValidation = validateBookingDates(bookingDto.startDate, bookingDto.endDate, bookingDto.numNight)
+      const dataValidation = validateBookingDates(
+        bookingDto.startDate,
+        bookingDto.endDate,
+        bookingDto.numNight,
+      )
       if (!dataValidation.isValid) {
         console.error('Error: create booking', dataValidation.error)
         return sendResponse(res, 400, null, dataValidation.error)
@@ -111,10 +133,14 @@ export class BookingsController {
       }
 
       // Check if the start date is in the past
-      const dataValidation = validateBookingDates(bookingDto.startDate, bookingDto.endDate, bookingDto.numNight)
-      if (!dataValidation.isValid) {
-        console.error('Error: update booking', dataValidation.error)
-        return sendResponse(res, 400, null, dataValidation.error)
+      if (bookingDto.startDate || bookingDto.endDate) {
+        bookingDto.startDate = new Date(bookingDto.startDate)
+        bookingDto.endDate = new Date(bookingDto.endDate)
+        const dataValidation = validateBookingDates(bookingDto.startDate, bookingDto.endDate, bookingDto.numNight)
+        if (!dataValidation.isValid) {
+          console.error('Error: update booking', dataValidation.error)
+          return sendResponse(res, 400, null, dataValidation.error)
+        }
       }
 
       // Check if there are overlapping bookings

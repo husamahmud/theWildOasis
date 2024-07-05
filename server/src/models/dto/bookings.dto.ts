@@ -1,7 +1,7 @@
+import { Status } from '@prisma/client'
 import { BookingsI } from '../../types/bookings.interface'
 import { GuestsI } from '../../types/guests.interface'
 import { CabinI } from '../../types/cabins.interface'
-import { Status } from '@prisma/client'
 
 /**
  * Data Transfer Object (DTO) for bookings details.

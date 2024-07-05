@@ -49,20 +49,6 @@ export class BookingsDao {
   }
 
   /**
-   * Get all bookings by gues id
-   * @param guestId - Gues id
-   * @returns All bookings found by gues id or empty array if no booking is found
-   **/
-  static async getBookingByGuesId(guestId: string): Promise<BookingsI[]> {
-    try {
-      return await prisma.bookings.findMany({ where: { guestId } })
-    } catch (error: any) {
-      console.error('Error in BookingsDao -> getBookingByUserId', error)
-      throw new Error(error.message)
-    }
-  }
-
-  /**
    * Update a booking
    * @param id - Booking id
    * @param booking - Booking data
