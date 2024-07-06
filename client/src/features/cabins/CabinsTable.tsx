@@ -38,7 +38,7 @@ const CabinsTable = () => {
 
   return (
     <Table>
-      <TableHeader>
+      <TableHeader columns="[0.6fr_1.8fr_2.2fr_1fr_1fr_1fr]">
         <div></div>
         <div>Cabin</div>
         <div>Capacity</div>

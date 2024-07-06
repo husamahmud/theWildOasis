@@ -13,9 +13,28 @@ export async function getAllCabins() {
   } catch (error) {
     console.error('Error:', error)
     if (axios.isAxiosError(error)) {
-      throw new Error(error.response?.data.message || 'Error getting all cabin')
+      throw new Error(
+        error.response?.data.message || 'Error getting all cabins',
+      )
     } else {
-      throw new Error('Error updating cabin')
+      throw new Error('Error getting all cabins')
+    }
+  }
+}
+
+/**
+ * getCabin - Fetches a cabin from the database
+ **/
+export const getCabin = async (id: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/cabins/${id}`)
+    return response.data
+  } catch (error) {
+    console.error('Error:', error)
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Error getting cabin')
+    } else {
+      throw new Error('Error getting cabin')
     }
   }
 }

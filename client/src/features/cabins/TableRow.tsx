@@ -25,13 +25,21 @@ const TableRow: React.FC<{ cabin: CabinI }> = ({ cabin }) => {
           alt="cabin image"
           className="block aspect-[3/2] w-28 object-cover object-center"
         />
-        <div className="font-semibold text-color-grey-600">{cabinNumber}</div>
+
+        <div className="font-sono font-semibold text-color-grey-600">
+          {cabinNumber}
+        </div>
+
         <div>
           Fits up to <span className="font-semibold">{maxCapacity}</span> guests
         </div>
-        <div className="font-semibold">{formatCurrency(regularPrice)}</div>
+
+        <div className="font-sono font-semibold">
+          {formatCurrency(regularPrice)}
+        </div>
+
         {discount ? (
-          <div className="font-semibold text-green-700">
+          <div className="font-sono font-semibold text-green-700">
             {formatCurrency(discount)}
           </div>
         ) : (

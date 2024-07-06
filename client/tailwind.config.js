@@ -64,7 +64,8 @@ export default {
         border: 'border',
       },
       fontFamily: {
-        sons: ['sons', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        sono: ['sono', 'sans-serif'],
       },
       grayscale: {
         0: '0',
