@@ -1,4 +1,6 @@
 import { Status } from '@prisma/client'
+import { CabinI } from './cabins.interface'
+import { GuestsI } from './guests.interface'
 
 export interface BookingsI {
   id: string;
@@ -12,6 +14,6 @@ export interface BookingsI {
   hasBreakfast: boolean;
   isPaid: boolean;
   observation: string;
-  guestId: string;
-  cabinId: string;
+  guest: GuestsI
+  cabin: CabinI
 }

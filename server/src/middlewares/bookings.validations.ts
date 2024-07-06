@@ -27,8 +27,8 @@ export class BookingsValidations {
       hasBreakfast: Joi.boolean().required(),
       isPaid: Joi.boolean().required(),
       observation: Joi.string().trim().required(),
-      guestId: Joi.string().required(),
-      cabinId: Joi.string().required(),
+      guest: Joi.object().required(),
+      cabin: Joi.object().required(),
     })
 
     // Validate the booking data against the schema
@@ -59,8 +59,8 @@ export class BookingsValidations {
       hasBreakfast: Joi.boolean(),
       isPaid: Joi.boolean(),
       observation: Joi.string().trim(),
-      guestId: Joi.string(),
-      cabinId: Joi.string(),
+      guest: Joi.object(),
+      cabin: Joi.object(),
     }).min(1) // Ensure at least one field is provided for update
 
     try {

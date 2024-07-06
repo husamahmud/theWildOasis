@@ -30,14 +30,14 @@ export class BookingsController {
 
     try {
       // Check if the cabin exists
-      const cabin = await CabinsDao.getCabin(bookingDto.cabinId)
+      const cabin = await CabinsDao.getCabin(bookingDto.cabin.id)
       if (!cabin) {
         console.error('Error: Cabin not found')
         return sendResponse(res, 404, null, 'Cabin not found')
       }
 
       // Check if the guest exists
-      const guest = await GuestsDao.getGuest(bookingDto.guestId)
+      const guest = await GuestsDao.getGuest(bookingDto.guest.id)
       if (!guest) {
         console.error('Error: Guest not found')
         return sendResponse(res, 404, null, 'Guest not found')
@@ -56,7 +56,7 @@ export class BookingsController {
 
       // Check if there are overlapping bookings
       const overlappingBookings = await BookingsDao.getOverlappingBookings(
-        bookingDto.cabinId,
+        bookingDto.cabin.id,
         bookingDto.startDate,
         bookingDto.endDate,
       )
@@ -145,7 +145,7 @@ export class BookingsController {
 
       // Check if there are overlapping bookings
       const overlappingBookings = await BookingsDao.getOverlappingBookings(
-        bookingDto.cabinId,
+        bookingDto.cabin.id,
         bookingDto.startDate,
         bookingDto.endDate,
       )

@@ -14,7 +14,18 @@ export class BookingsDao {
    **/
   static async createBooking(booking: BookingsDto): Promise<BookingsI> {
     try {
-      return await prisma.bookings.create({ data: booking })
+      const { guest, cabin, ...bookingData } = booking
+      return await prisma.bookings.create({
+        data: {
+          ...bookingData,
+          guestId: guest.id,
+          cabinId: cabin.id,
+        },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
     } catch (error: any) {
       console.error('Error in BookingsDao -> createBooking', error)
       throw new Error(error.message)
@@ -27,7 +38,12 @@ export class BookingsDao {
    **/
   static async getAllBookings(): Promise<BookingsI[]> {
     try {
-      return await prisma.bookings.findMany()
+      return await prisma.bookings.findMany({
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
     } catch (error: any) {
       console.error('Error in BookingsDao -> getBookings', error)
       throw new Error(error.message)
@@ -41,7 +57,13 @@ export class BookingsDao {
    **/
   static async getBookingById(id: string): Promise<BookingsI | null> {
     try {
-      return await prisma.bookings.findUnique({ where: { id } })
+      return await prisma.bookings.findUnique({
+        where: { id },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
     } catch (error: any) {
       console.error('Error in BookingsDao -> getBookingById', error)
       throw new Error(error.message)
@@ -56,7 +78,35 @@ export class BookingsDao {
    **/
   static async updateBooking(id: string, booking: BookingsDto): Promise<BookingsI> {
     try {
-      return await prisma.bookings.update({ where: { id }, data: booking })
+      const existingBooking = await prisma.bookings.findUnique({
+        where: { id },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
+      if (!existingBooking) {
+        throw new Error('Booking not found')
+      }
+
+      const { guest, cabin, ...bookingData } = booking
+      const updateData: any = { ...bookingData }
+
+      if (guest.id !== existingBooking.guest.id) {
+        updateData.guestId = guest.id
+      }
+      if (cabin.id !== existingBooking.cabin.id) {
+        updateData.cabinId = cabin.id
+      }
+
+      return await prisma.bookings.update({
+        where: { id },
+        data: updateData,
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
     } catch (error: any) {
       console.error('Error in BookingsDao -> updateBooking', error)
       throw new Error(error.message)
@@ -70,7 +120,13 @@ export class BookingsDao {
    **/
   static async deleteBooking(id: string): Promise<BookingsI> {
     try {
-      return await prisma.bookings.delete({ where: { id } })
+      return await prisma.bookings.delete({
+        where: { id },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
     } catch (error: any) {
       console.error('Error in BookingsDao -> deleteBooking', error)
       throw new Error(error.message)
@@ -109,6 +165,10 @@ export class BookingsDao {
               ],
             },
           ],
+        },
+        include: {
+          guest: true,
+          cabin: true,
         },
       })
     } catch (error: any) {

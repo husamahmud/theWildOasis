@@ -18,8 +18,8 @@ export class BookingsDto implements Partial<BookingsI> {
   hasBreakfast: boolean
   isPaid: boolean
   observation: string
-  guestId: GuestsI['id']
-  cabinId: CabinI['id']
+  guest: GuestsI
+  cabin: CabinI
 
   constructor(bodyRequest: BookingsI) {
     this.startDate = bodyRequest.startDate
@@ -32,7 +32,7 @@ export class BookingsDto implements Partial<BookingsI> {
     this.hasBreakfast = bodyRequest.hasBreakfast
     this.isPaid = bodyRequest.isPaid
     this.observation = bodyRequest.observation
-    this.guestId = bodyRequest.guestId
-    this.cabinId = bodyRequest.cabinId
+    this.guest = bodyRequest.guest ?? {} as GuestsI
+    this.cabin = bodyRequest.cabin ?? {} as CabinI
   }
 }
