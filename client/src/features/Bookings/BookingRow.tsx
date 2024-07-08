@@ -1,76 +1,67 @@
-// import TableRow from '../cabins/TableRow.tsx'
-
-// interface BookingRowProps {
-//   id: string
-//   startDate: Date
-//   endDate: Date
-//   numNight: number
-//   totalPrice: number
-//   status: 'CHECKED_IN' | 'CHECKED_OUT' | 'UNCONFIRMED'
-//   cabin: {
-//     cabinNumber: string
-//   }
-//   guest: {
-//     fullName: string
-//     email: string
-//   }
-// }
+import React from 'react'
 import { format, isToday } from 'date-fns'
-import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers.ts'
 import { HiArrowDownOnSquare, HiArrowUpOnSquare } from 'react-icons/hi2'
+import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers.ts'
+
 import Button from '../../ui/Button.tsx'
 
-/**
- {
- "id": "0658addc-0e1e-43a4-993b-9e678306d64c",
- "createdAt": "2024-07-06T12:21:44.575Z",
- "startDate": "2024-09-10T00:00:00.000Z",
- "endDate": "2024-09-15T00:00:00.000Z",
- "numNight": 5,
- "numGuest": 4,
- "cabinPrice": 300,
- "totalPrice": 1500,
- "status": "UNCONFIRMED",
- "hasBreakfast": false,
- "isPaid": false,
- "observation": "Pending confirmation of vacation dates",
- "cabinId": "93af8755-c3c7-4f0d-b45f-90400e5e6232",
- "guestId": "73cb5b57-8913-4a5d-8812-7fc907f5f974"
- }
- */
-// const BookingRow: React.FC<BookingRowProps> = () => {
-const BookingRow = () => {
-  const startDate = new Date('2024-09-10T00:00:00.000Z')
-  const endDate = new Date('2024-09-15T00:00:00.000Z')
-  const numNight = 5
-  const totalPrice = 1500
-  const status = 'CHECKED_IN'
-  const cabinNumber = '001'
-  const fullName = 'husam mahmud'
-  const email = 'husam@example'
-
-  const statusToTagName = {
-    CHECKED_IN: 'green',
-    CHECKED_OUT: 'grey',
-    UNCONFIRMED: 'blue',
+interface BookingRowProps {
+  booking: {
+    id: string
+    startDate: Date
+    endDate: Date
+    numNight: number
+    numGuest: number
+    cabinPrice: number
+    totalPrice: number
+    status: 'CHECKED_IN' | 'CHECKED_OUT' | 'UNCONFIRMED'
+    hasBreakfast: boolean
+    isPaid: boolean
+    observation: string
+    guestId: string
+    cabinId: string
   }
+  guest: {
+    id: string
+    createdAt: string
+    fullName: string
+    email: string
+    nationalID: string
+    nationality: string
+    countryFlag: string
+  }
+  cabin: {
+    id: string
+    createdAt: string
+    cabinNumber: string
+    maxCapacity: number
+    regularPrice: number
+    discount: number
+    description: string
+    image: string
+  }
+}
 
-  const statusColor = statusToTagName[status]
+const BookingRow: React.FC<BookingRowProps> = ({ booking, cabin, guest }) => {
+  const { startDate, endDate, numNight, totalPrice, status } = booking
+  const statusColor = 'green'
 
   return (
     <div className="grid grid-cols-[0.6fr_1.5fr_2fr_1.4fr_1fr_0.5fr] items-center px-9 py-5">
       <div className="font-sono text-2xl font-semibold text-color-grey-600">
-        {cabinNumber}
+        {cabin.cabinNumber}
       </div>
 
       <div className="flex flex-col gap-1">
-        <span className="font-semibold">{fullName}</span>
-        <span className="text-xl text-color-grey-600">{email}</span>
+        <span className="font-semibold">{guest.fullName}</span>
+        <span className="text-xl text-color-grey-600">{guest.email}</span>
       </div>
 
       <div className="flex flex-col gap-1">
         <span className="font-semibold">
-          {isToday(startDate) ? 'Today' : formatDistanceFromNow(startDate)}{' '}
+          {isToday(startDate)
+            ? 'Today'
+            : formatDistanceFromNow(new Date(startDate))}{' '}
           &rarr; {numNight} night stay
         </span>
 
@@ -81,7 +72,7 @@ const BookingRow = () => {
       </div>
 
       <div
-        className={`w-fit rounded-full uppercase bg-${statusColor}-300 px-4 py-2 text-lg font-semibold text-${statusColor}-800`}
+        className={`w-fit rounded-full uppercase bg-${statusColor}-300 textgre px-4 py-2 text-lg font-semibold`}
       >
         {status.replace('_', ' ')}
       </div>

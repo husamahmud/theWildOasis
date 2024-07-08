@@ -33,7 +33,7 @@ const CabinsTable = () => {
   const modifier = direction === 'asc' ? 1 : -1
 
   const sortedCabins = filteredCabins.sort(
-    (a: CabinI, b: CabinI) => (a[field] - b[field]) * modifier,
+    (a: CabinI, b: CabinI) => (+a[field] - +b[field]) * modifier,
   )
 
   return (

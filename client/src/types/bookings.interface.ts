@@ -1,3 +1,6 @@
+import { CabinI } from './cabins.interface.ts'
+import { GuestI } from './guests.interface.ts'
+
 export interface BookingsI {
   id: string
   startDate: Date
@@ -12,4 +15,6 @@ export interface BookingsI {
   observation: string
   guestId: string
   cabinId: string
+  guest: GuestI
+  cabin: CabinI
 }
