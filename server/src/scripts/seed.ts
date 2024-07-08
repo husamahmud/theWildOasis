@@ -145,105 +145,440 @@ const guestsData = [
     'nationality': 'Portugal',
     'countryFlag': 'https://flagcdn.com/pt.svg',
   },
+  {
+    'fullName': 'Jonas Mueller',
+    'email': 'jonas@example.eu',
+    'nationality': 'Germany',
+    'nationalID': '1233212288',
+    'countryFlag': 'https://flagcdn.com/de.svg',
+  },
+  {
+    'fullName': 'Jonas Anderson',
+    'email': 'anderson@example.com',
+    'nationality': 'Bolivia (Plurinational State of)',
+    'nationalID': '0988520146',
+    'countryFlag': 'https://flagcdn.com/bo.svg',
+  },
+  {
+    'fullName': 'Jonathan Williams',
+    'email': 'jowi@gmail.com',
+    'nationality': 'United States of America',
+    'nationalID': '633678543',
+    'countryFlag': 'https://flagcdn.com/us.svg',
+  },
+  {
+    'fullName': 'Emma Watson',
+    'email': 'emma@gmail.com',
+    'nationality': 'United Kingdom',
+    'nationalID': '1234578901',
+    'countryFlag': 'https://flagcdn.com/gb.svg',
+  },
+  {
+    'fullName': 'Mohammed Ali',
+    'email': 'mohammedali@yahoo.com',
+    'nationality': 'Egypt',
+    'nationalID': '987543210',
+    'countryFlag': 'https://flagcdn.com/eg.svg',
+  },
+  {
+    'fullName': 'Maria Rodriguez',
+    'email': 'maria@gmail.com',
+    'nationality': 'Spain',
+    'nationalID': '1098765321',
+    'countryFlag': 'https://flagcdn.com/es.svg',
+  },
+  {
+    'fullName': 'Li Mei',
+    'email': 'li.mei@hotmail.com',
+    'nationality': 'China',
+    'nationalID': '102934756',
+    'countryFlag': 'https://flagcdn.com/cn.svg',
+  },
+  {
+    'fullName': 'Khadija Ahmed',
+    'email': 'khadija@gmail.com',
+    'nationality': 'Sudan',
+    'nationalID': '1023457890',
+    'countryFlag': 'https://flagcdn.com/sd.svg',
+  },
+  {
+    'fullName': 'Gabriel Silva',
+    'email': 'gabriel@gmail.com',
+    'nationality': 'Brazil',
+    'nationalID': '109283465',
+    'countryFlag': 'https://flagcdn.com/br.svg',
+  },
+  {
+    'fullName': 'Maria Gomez',
+    'email': 'maria@example.com',
+    'nationality': 'Mexico',
+    'nationalID': '108765421',
+    'countryFlag': 'https://flagcdn.com/mx.svg',
+  },
+  {
+    'fullName': 'Ahmed Hassan',
+    'email': 'ahmed@gmail.com',
+    'nationality': 'Egypt',
+    'nationalID': '1077777777',
+    'countryFlag': 'https://flagcdn.com/eg.svg',
+  },
+  {
+    'fullName': 'John Doe',
+    'email': 'johndoe@gmail.com',
+    'nationality': 'United States',
+    'nationalID': '3245908744',
+    'countryFlag': 'https://flagcdn.com/us.svg',
+  },
+  {
+    'fullName': 'Fatima Ahmed',
+    'email': 'fatima@example.com',
+    'nationality': 'Pakistan',
+    'nationalID': '1089999363',
+    'countryFlag': 'https://flagcdn.com/pk.svg',
+  },
+  {
+    'fullName': 'David Smith',
+    'email': 'david@gmail.com',
+    'nationality': 'Australia',
+    'nationalID': '44450960283',
+    'countryFlag': 'https://flagcdn.com/au.svg',
+  },
+  {
+    'fullName': 'Marie Dupont',
+    'email': 'marie@gmail.com',
+    'nationality': 'France',
+    'nationalID': '06934233728',
+    'countryFlag': 'https://flagcdn.com/fr.svg',
+  },
+  {
+    'fullName': 'Ramesh Patel',
+    'email': 'ramesh@gmail.com',
+    'nationality': 'India',
+    'nationalID': '9875412303',
+    'countryFlag': 'https://flagcdn.com/in.svg',
+  },
+  {
+    'fullName': 'Fatimah Al-Sayed',
+    'email': 'fatimah@gmail.com',
+    'nationality': 'Kuwait',
+    'nationalID': '0123456789',
+    'countryFlag': 'https://flagcdn.com/kw.svg',
+  },
+  {
+    'fullName': 'Nina Williams',
+    'email': 'nina@hotmail.com',
+    'nationality': 'South Africa',
+    'nationalID': '2345678901',
+    'countryFlag': 'https://flagcdn.com/za.svg',
+  },
+  {
+    'fullName': 'Taro Tanaka',
+    'email': 'taro@gmail.com',
+    'nationality': 'Japan',
+    'nationalID': '3456789012',
+    'countryFlag': 'https://flagcdn.com/jp.svg',
+  },
+  {
+    'fullName': 'Abdul Rahman',
+    'email': 'abdul@gmail.com',
+    'nationality': 'Saudi Arabia',
+    'nationalID': '4567890123',
+    'countryFlag': 'https://flagcdn.com/sa.svg',
+  },
+  {
+    'fullName': 'Julie Nguyen',
+    'email': 'julie@gmail.com',
+    'nationality': 'Vietnam',
+    'nationalID': '5678901234',
+    'countryFlag': 'https://flagcdn.com/vn.svg',
+  },
+  {
+    'fullName': 'Sara Lee',
+    'email': 'sara@gmail.com',
+    'nationality': 'South Korea',
+    'nationalID': '6789012345',
+    'countryFlag': 'https://flagcdn.com/kr.svg',
+  },
+  {
+    'fullName': 'Carlos Gomez',
+    'email': 'carlos@yahoo.com',
+    'nationality': 'Colombia',
+    'nationalID': '7890123456',
+    'countryFlag': 'https://flagcdn.com/co.svg',
+  },
+  {
+    'fullName': 'Emma Brown',
+    'email': 'emma@gmail.com',
+    'nationality': 'Canada',
+    'nationalID': '8901234567',
+    'countryFlag': 'https://flagcdn.com/ca.svg',
+  },
+  {
+    'fullName': 'Juan Hernandez',
+    'email': 'juan@yahoo.com',
+    'nationality': 'Argentina',
+    'nationalID': '4343433333',
+    'countryFlag': 'https://flagcdn.com/ar.svg',
+  },
+  {
+    'fullName': 'Ibrahim Ahmed',
+    'email': 'ibrahim@yahoo.com',
+    'nationality': 'Nigeria',
+    'nationalID': '2345678009',
+    'countryFlag': 'https://flagcdn.com/ng.svg',
+  },
+  {
+    'fullName': 'Mei Chen',
+    'email': 'mei@gmail.com',
+    'nationality': 'Taiwan',
+    'nationalID': '3456117890',
+    'countryFlag': 'https://flagcdn.com/tw.svg',
+  },
 ]
-const bookingsData = [
-  {
-    'startDate': '2024-08-01',
-    'endDate': '2024-08-07',
-    'numNight': 6,
-    'numGuest': 2,
-    'cabinPrice': 250,
-    'totalPrice': 1500,
-    'status': 'CHECKED_IN',
-    'hasBreakfast': true,
-    'isPaid': true,
-    'observation': 'Special anniversary celebration',
-  },
-  {
-    'startDate': '2024-09-10',
-    'endDate': '2024-09-15',
-    'numNight': 5,
-    'numGuest': 4,
-    'cabinPrice': 300,
-    'totalPrice': 1500,
-    'status': 'UNCONFIRMED',
-    'hasBreakfast': false,
-    'isPaid': false,
-    'observation': 'Pending confirmation of vacation dates',
-  },
-  {
-    'startDate': '2024-08-20',
-    'endDate': '2024-08-25',
-    'numNight': 5,
-    'numGuest': 6,
-    'cabinPrice': 800,
-    'totalPrice': 4000,
-    'status': 'CHECKED_OUT',
-    'hasBreakfast': true,
-    'isPaid': true,
-    'observation': 'Family reunion',
-  },
-  {
-    'startDate': '2024-08-10',
-    'endDate': '2024-08-15',
-    'numNight': 5,
-    'numGuest': 2,
-    'cabinPrice': 350,
-    'totalPrice': 1750,
-    'status': 'UNCONFIRMED',
-    'hasBreakfast': false,
-    'isPaid': false,
-    'observation': 'Planning a quiet retreat',
-  },
-  {
-    'startDate': '2024-08-05',
-    'endDate': '2024-08-12',
-    'numNight': 7,
-    'numGuest': 4,
-    'cabinPrice': 500,
-    'totalPrice': 3500,
-    'status': 'CHECKED_OUT',
-    'hasBreakfast': true,
-    'isPaid': true,
-    'observation': 'Annual family vacation',
-  },
-  {
-    'startDate': '2024-09-01',
-    'endDate': '2024-09-08',
-    'numNight': 7,
-    'numGuest': 6,
-    'cabinPrice': 350,
-    'totalPrice': 2450,
-    'status': 'UNCONFIRMED',
-    'hasBreakfast': false,
-    'isPaid': false,
-    'observation': 'Group getaway',
-  },
-  {
-    'startDate': '2024-08-15',
-    'endDate': '2024-08-22',
-    'numNight': 7,
-    'numGuest': 8,
-    'cabinPrice': 600,
-    'totalPrice': 4200,
-    'status': 'CHECKED_IN',
-    'hasBreakfast': true,
-    'isPaid': true,
-    'observation': 'Large family gathering',
-  },
-  {
-    'startDate': '2024-08-25',
-    'endDate': '2024-08-28',
-    'numNight': 3,
-    'numGuest': 10,
-    'cabinPrice': 1400,
-    'totalPrice': 4200,
-    'status': 'UNCONFIRMED',
-    'hasBreakfast': false,
-    'isPaid': false,
-    'observation': 'Team building retreat',
-  },
-]
+// const bookingsData = [
+//   {
+//     'startDate': '2024-08-01',
+//     'endDate': '2024-08-07',
+//     'numNight': 6,
+//     'numGuest': 2,
+//     'cabinPrice': 250,
+//     'totalPrice': 1500,
+//     'status': 'CHECKED_IN',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Special anniversary celebration',
+//   },
+//   {
+//     'startDate': '2024-09-10',
+//     'endDate': '2024-09-15',
+//     'numNight': 5,
+//     'numGuest': 4,
+//     'cabinPrice': 300,
+//     'totalPrice': 1500,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Pending confirmation of vacation dates',
+//   },
+//   {
+//     'startDate': '2024-08-20',
+//     'endDate': '2024-08-25',
+//     'numNight': 5,
+//     'numGuest': 6,
+//     'cabinPrice': 800,
+//     'totalPrice': 4000,
+//     'status': 'CHECKED_OUT',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Family reunion',
+//   },
+//   {
+//     'startDate': '2024-08-10',
+//     'endDate': '2024-08-15',
+//     'numNight': 5,
+//     'numGuest': 2,
+//     'cabinPrice': 350,
+//     'totalPrice': 1750,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Planning a quiet retreat',
+//   },
+//   {
+//     'startDate': '2024-08-05',
+//     'endDate': '2024-08-12',
+//     'numNight': 7,
+//     'numGuest': 4,
+//     'cabinPrice': 500,
+//     'totalPrice': 3500,
+//     'status': 'CHECKED_OUT',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Annual family vacation',
+//   },
+//   {
+//     'startDate': '2024-09-01',
+//     'endDate': '2024-09-08',
+//     'numNight': 7,
+//     'numGuest': 6,
+//     'cabinPrice': 350,
+//     'totalPrice': 2450,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Group getaway',
+//   },
+//   {
+//     'startDate': '2024-08-15',
+//     'endDate': '2024-08-22',
+//     'numNight': 7,
+//     'numGuest': 8,
+//     'cabinPrice': 600,
+//     'totalPrice': 4200,
+//     'status': 'CHECKED_IN',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Large family gathering',
+//   },
+//   {
+//     'startDate': '2024-08-25',
+//     'endDate': '2024-08-28',
+//     'numNight': 3,
+//     'numGuest': 10,
+//     'cabinPrice': 1400,
+//     'totalPrice': 4200,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Team building retreat',
+//   }, {
+//     'startDate': '2024-08-01',
+//     'endDate': '2024-08-07',
+//     'numNight': 6,
+//     'numGuest': 2,
+//     'cabinPrice': 250,
+//     'totalPrice': 1500,
+//     'status': 'CHECKED_IN',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Special anniversary celebration',
+//   },
+//   {
+//     'startDate': '2024-09-10',
+//     'endDate': '2024-09-15',
+//     'numNight': 5,
+//     'numGuest': 4,
+//     'cabinPrice': 300,
+//     'totalPrice': 1500,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Pending confirmation of vacation dates',
+//   },
+//   {
+//     'startDate': '2024-08-20',
+//     'endDate': '2024-08-25',
+//     'numNight': 5,
+//     'numGuest': 6,
+//     'cabinPrice': 800,
+//     'totalPrice': 4000,
+//     'status': 'CHECKED_OUT',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Family reunion',
+//   },
+//   {
+//     'startDate': '2024-08-10',
+//     'endDate': '2024-08-15',
+//     'numNight': 5,
+//     'numGuest': 2,
+//     'cabinPrice': 350,
+//     'totalPrice': 1750,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Planning a quiet retreat',
+//   },
+//   {
+//     'startDate': '2024-08-05',
+//     'endDate': '2024-08-12',
+//     'numNight': 7,
+//     'numGuest': 4,
+//     'cabinPrice': 500,
+//     'totalPrice': 3500,
+//     'status': 'CHECKED_OUT',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Annual family vacation',
+//   },
+//   {
+//     'startDate': '2024-09-01',
+//     'endDate': '2024-09-08',
+//     'numNight': 7,
+//     'numGuest': 6,
+//     'cabinPrice': 350,
+//     'totalPrice': 2450,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Group getaway',
+//   },
+//   {
+//     'startDate': '2024-08-15',
+//     'endDate': '2024-08-22',
+//     'numNight': 7,
+//     'numGuest': 8,
+//     'cabinPrice': 600,
+//     'totalPrice': 4200,
+//     'status': 'CHECKED_IN',
+//     'hasBreakfast': true,
+//     'isPaid': true,
+//     'observation': 'Large family gathering',
+//   },
+//   {
+//     'startDate': '2024-08-25',
+//     'endDate': '2024-08-28',
+//     'numNight': 3,
+//     'numGuest': 10,
+//     'cabinPrice': 1400,
+//     'totalPrice': 4200,
+//     'status': 'UNCONFIRMED',
+//     'hasBreakfast': false,
+//     'isPaid': false,
+//     'observation': 'Team building retreat',
+//   },
+// ]
+
+function generateBookingData(numEntries: number) {
+  const bookingData = []
+  const basePrice = 250
+  const getRandomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min
+  const statuses = ['CHECKED_IN', 'CHECKED_OUT', 'UNCONFIRMED']
+  const observations = [
+    'Special anniversary celebration',
+    'Family vacation',
+    'Business trip',
+    'Honeymoon',
+    'Friends reunion',
+    'Birthday celebration',
+    'Romantic getaway',
+    'Relaxation retreat',
+    'Adventure trip',
+    'Cultural exploration',
+  ]
+
+  for (let i = 0; i < numEntries; i++) {
+    const numNights = getRandomInt(1, 14)
+    const startDate = new Date(2024, getRandomInt(0, 11), getRandomInt(1, 28))
+    const endDate = new Date(startDate)
+    endDate.setDate(startDate.getDate() + numNights)
+
+    const startDateStr = startDate.toISOString().split('T')[0]
+    const endDateStr = endDate.toISOString().split('T')[0]
+
+    const numGuests = getRandomInt(1, 4)
+    const totalPrice = basePrice * numNights * numGuests
+    const status = statuses[getRandomInt(0, statuses.length - 1)]
+    const observation = observations[getRandomInt(0, observations.length - 1)]
+
+    bookingData.push({
+      startDate: startDateStr,
+      endDate: endDateStr,
+      numNight: numNights,
+      numGuest: numGuests,
+      cabinPrice: basePrice,
+      totalPrice: totalPrice,
+      status: status,
+      hasBreakfast: Math.random() < 0.5,
+      isPaid: Math.random() < 0.7,
+      observation: observation,
+    })
+  }
+
+  return bookingData
+}
+
+const bookingsData = generateBookingData(50)
 
 const seed = async () => {
   // Delete existing records
@@ -254,7 +589,7 @@ const seed = async () => {
     prisma.cabins.deleteMany(),
   ])
 
-  console.log('Seeding database...')
+  console.log('Seeding database...\n')
 
   // Seed Cabins
   const cabins = []
@@ -263,16 +598,25 @@ const seed = async () => {
     console.log('Cabin seeded', cabin.id)
     cabins.push(cabin)
   }
-  console.log('Cabins seeded')
+  console.log('Cabins seeded\n')
 
   // Seed Guests
   const guests = []
   for (let i = 0; i < guestsData.length; i++) {
-    const guest = await prisma.guests.create({ data: guestsData[i] })
+    const guest = await prisma.guests.create({
+      data:
+        {
+          fullName: guestsData[i].fullName,
+          email: `${i}${guestsData[i].email}`,
+          nationalID: `${guestsData[i].nationalID}${i}`,
+          nationality: guestsData[i].nationality,
+          countryFlag: guestsData[i].countryFlag,
+        },
+    })
     console.log('Guest seeded', guest.id)
     guests.push(guest)
   }
-  console.log('Guests seeded')
+  console.log('Guests seeded\n')
 
   // Seed Bookings
   for (let i = 0; i < bookingsData.length; i++) {
@@ -292,6 +636,7 @@ const seed = async () => {
     })
     console.log('Booking seeded', booking.id)
   }
+  console.log('Booking seeded\n')
 }
 
 seed()
