@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
     '/api/v1/cabins': 'for cabins routes 🏡',
     '/api/v1/guests': 'for guests routes 👨‍👩‍👧‍👦',
     '/api/v1/bookings': 'for bookings routes 📅',
+    '/api/v1/user': 'for user routes 👤',
   })
 })
 
@@ -28,10 +29,12 @@ app.get('/', (req, res) => {
 import CabinsRoute from './routes/cabins.route'
 import GuestsRoute from './routes/guests.route'
 import BookingsRoute from './routes/bookings.route'
+import UserRoute from './routes/user.route'
 
 app.use('/api/v1/cabins', CabinsRoute)
 app.use('/api/v1/guests', GuestsRoute)
 app.use('/api/v1/bookings', BookingsRoute)
+app.use('/api/v1/users', UserRoute)
 
 /**
  * Start the server

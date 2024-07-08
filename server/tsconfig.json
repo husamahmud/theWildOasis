@@ -6,10 +6,13 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
 		"outDir": "./dist",
 		"rootDir": "./src",
 		"types": [
-			"@prisma/client"
+			"@prisma/client",
+			"node",
+			"@types/bcryptjs"
 		]
 	},
 	"include": [
