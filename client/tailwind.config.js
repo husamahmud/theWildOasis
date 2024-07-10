@@ -97,6 +97,7 @@ export default {
       animation: {
         'spin-custom': 'spinCustom 2s linear infinite',
         dash: 'dash 1.5s ease-in-out infinite',
+        'spin-linear': 'spin 1.5s linear infinite',
       },
     },
   },

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SIZES = {
   small: 'px-3 py-2 text-center text-xl font-semibold uppercase',
-  medium: 'px-6 py-5 text-2xl font-medium',
+  medium: 'px-4 py-4 text-2xl font-medium',
   large: 'px-5 py-10 text-2xl font-medium',
 }
 
@@ -34,7 +34,8 @@ const Button: React.FC<{
       className={`${SIZES[size]} ${VARIANTS[variant]} ${className} rounded-sm border-none shadow-sm`}
       onClick={onClick}
       disabled={disabled}
-      type={type}>
+      type={type}
+    >
       {children}
     </button>
   )
