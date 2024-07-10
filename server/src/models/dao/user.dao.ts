@@ -1,6 +1,6 @@
 import prisma from '../prisma/prisma-client'
 
-import { UserDto } from '../dto/user.dto'
+import { UserDto, CreateUserDto } from '../dto/user.dto'
 
 /**
  * Data Access Object (DAO) for interacting with the Users table in the database
@@ -11,7 +11,7 @@ export class UserDao {
    * @param userDto - User data
    * @returns The user created
    **/
-  static async createUser(userDto: UserDto): Promise<UserDto> {
+  static async createUser(userDto: CreateUserDto): Promise<UserDto> {
     try {
       return prisma.user.create({ data: userDto })
     } catch (error: any) {
@@ -81,7 +81,7 @@ export class UserDao {
    * @param userDto - User data
    * @returns The user updated
    **/
-  static async updateUser(id: string, userDto: UserDto): Promise<UserDto> {
+  static async updateUser(id: string, userDto: CreateUserDto): Promise<UserDto> {
     try {
       return prisma.user.update({ where: { id }, data: userDto })
     } catch (error: any) {

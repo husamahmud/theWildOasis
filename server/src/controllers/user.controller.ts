@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 
 import sendResponse from '../utils/sendRequest'
-import { comparePassword, hashPassword } from '../utils/password'
+import { comparePasswords, hash } from '../utils/password'
 
-import { UserDto } from '../models/dto/user.dto'
+import { CreateUserDto } from '../models/dto/user.dto'
 import { UserDao } from '../models/dao/user.dao'
 import { UserValidations } from '../middlewares/user.validations'
 
@@ -15,7 +15,7 @@ export class UserController {
    * Handles the creation of a new user
    **/
   static async createUser(req: Request, res: Response) {
-    const userDto = new UserDto(req.body)
+    const userDto = new CreateUserDto(req.body)
 
     // Validate the user data
     const { error } = await UserValidations.createUser(userDto)
@@ -34,10 +34,15 @@ export class UserController {
       }
 
       // Hash the user password
-      userDto.password = await hashPassword(userDto.password)
+      userDto.password = await hash(userDto.password)
 
       // Create the user
       const newUser = await UserDao.createUser(userDto)
+      if (!newUser) {
+        console.error('Error: user not created')
+        return sendResponse(res, 500, null, 'User not created')
+      }
+
       console.log('User created successfully')
       return sendResponse(res, 201, newUser, 'User created successfully')
     } catch (error: any) {
@@ -50,7 +55,7 @@ export class UserController {
    * Handles the updating of an existing user
    **/
   static async updateUser(req: Request, res: Response) {
-    const userDto = new UserDto(req.body)
+    const userDto = new CreateUserDto(req.body)
     const id = req.params.id
 
     // Validate the user data
@@ -88,14 +93,14 @@ export class UserController {
 
       if (userDto.password) {
         // Check if the password is the same as the previous one
-        const isPasswordSame = await comparePassword(userDto.password, existingUser.password)
+        const isPasswordSame = await comparePasswords(userDto.password, existingUser.password)
         if (isPasswordSame) {
           console.error('Error: password is the same as the previous one')
           return sendResponse(res, 400, null, 'Password is the same as the previous one')
         }
 
         // Hash the user password
-        userDto.password = await hashPassword(userDto.password)
+        userDto.password = await hash(userDto.password)
       }
 
       // Update the user

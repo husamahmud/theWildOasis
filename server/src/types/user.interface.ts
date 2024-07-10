@@ -1,8 +1,10 @@
+import { RefreshTokenI } from './refreshToken.interface'
+
 export interface UserI {
   id: string;
+  createdAt: Date;
   username: string;
   email: string;
   password: string;
-  accessToken?: string | null;
-  refreshToken?: string | null;
+  refreshTokens: RefreshTokenI[];
 }

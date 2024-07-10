@@ -1,4 +1,3 @@
-import { Status } from '@prisma/client'
 import { BookingsI } from '../../types/bookings.interface'
 import { GuestsI } from '../../types/guests.interface'
 import { CabinI } from '../../types/cabins.interface'
@@ -14,7 +13,7 @@ export class BookingsDto implements Partial<BookingsI> {
   numGuest: number
   cabinPrice: number
   totalPrice: number
-  status: Status
+  status: 'CHECKED_IN' | 'CHECKED_OUT' | 'UNCONFIRMED'
   hasBreakfast: boolean
   isPaid: boolean
   observation: string

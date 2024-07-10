@@ -22,8 +22,21 @@ model User {
   email    String @unique
   password String
 
-  accessToken  String?
-  refreshToken String?
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id String @id @default(uuid())
+
+  token     String    @unique
+  issuedAt  DateTime  @default(now())
+  expiresAt DateTime
+  revokedAt DateTime?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model Guests {
