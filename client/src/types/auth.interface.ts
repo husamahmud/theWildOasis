@@ -1,5 +1,6 @@
 export interface LoginI {
   email: string
+  isRememberMe: boolean
   password: string
 }
 

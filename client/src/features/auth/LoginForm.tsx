@@ -10,13 +10,14 @@ import SpinnerMini from '../../ui/SpinnerMini.tsx'
 const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isRememberMe, setIsRememberMe] = useState(false)
   const { login, isLoading } = useLogin()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!email || !password) return toast.error('Please fill in all fields')
 
-    login({ email, password })
+    login({ email, password, isRememberMe })
   }
 
   return (
@@ -62,13 +63,25 @@ const LoginForm = () => {
         />
       </div>
 
+      <div className="mb-3">
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            className="mr-2 text-brand-600 accent-color-brand-600"
+            checked={isRememberMe}
+            onChange={() => setIsRememberMe(!isRememberMe)}
+          />
+          <span className="text-lg text-gray-700">Remember me</span>
+        </label>
+      </div>
+
       <div className="mb-6 flex w-fit flex-col">
-        <NavLink
-          to="/forgot-password"
-          className="p-0.5 text-base font-light text-brand-600 hover:underline"
-        >
-          Forgot password?
-        </NavLink>
+        {/*<NavLink*/}
+        {/*  to="/forgot-password"*/}
+        {/*  className="p-0.5 text-base font-light text-brand-600 hover:underline"*/}
+        {/*>*/}
+        {/*  Forgot password?*/}
+        {/*</NavLink>*/}
 
         <NavLink
           to="/register"
