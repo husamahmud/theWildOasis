@@ -87,3 +87,13 @@ model Bookings {
   guest Guests @relation(fields: [guestId], references: [id])
   cabin Cabins @relation(fields: [cabinId], references: [id])
 }
+
+model Settings {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  minBookingLen Int
+  maxBookingLen Int
+  maxGuests     Int
+  breakfastCost Float
+}
