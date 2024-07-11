@@ -8,13 +8,11 @@ const {
   register,
   login,
   logout,
-  refreshToken,
 } = AuthController
 
 router
   .post('/register', register)
   .post('/login', login)
   .post('/logout', logout)
-  .post('/refresh-token', refreshToken)
 
 export default router

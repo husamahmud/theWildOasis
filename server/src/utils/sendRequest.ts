@@ -7,6 +7,6 @@ import { Response } from 'express'
  * @param data - The payload to send in the response body, typically an object or array.
  * @param message - An optional message to include in the response body.
  */
-export default function sendResponse(res: Response, statusCode: number, data: any = null, message: string | Error): void {
+export function sendResponse(res: Response, statusCode: number, data: any = null, message: string | Error): void {
   res.status(statusCode).json({ message, data })
 }

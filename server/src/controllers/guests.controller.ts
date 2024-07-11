@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import sendResponse from '../utils/sendRequest'
+import { sendResponse } from '../utils/sendRequest'
 
 import { GuestsDto } from '../models/dto/guests.dto'
 import { GuestsValidations } from '../middlewares/guests.validations'

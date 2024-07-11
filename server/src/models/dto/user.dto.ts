@@ -1,4 +1,4 @@
-import { UserI } from '../../types/user.interface'
+import { LoginI, UserI } from '../../types/user.interface'
 import { RefreshTokenI } from '../../types/refreshToken.interface'
 
 /**
@@ -7,10 +7,12 @@ import { RefreshTokenI } from '../../types/refreshToken.interface'
  **/
 export class LoginDto {
   email: string
+  isRememberMe: boolean
   password: string
 
-  constructor(bodyRequest: UserI) {
+  constructor(bodyRequest: LoginI) {
     this.email = bodyRequest.email
+    this.isRememberMe = bodyRequest.isRememberMe
     this.password = bodyRequest.password
   }
 }

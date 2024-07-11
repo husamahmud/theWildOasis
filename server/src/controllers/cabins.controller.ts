@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import sendResponse from '../utils/sendRequest'
+import { sendResponse } from '../utils/sendRequest'
 import { CabinsDto } from '../models/dto/cabins.dto'
 import { CabinsValidations } from '../middlewares/cabins.validations'
 import { CabinsDao } from '../models/dao/cabins.dao'

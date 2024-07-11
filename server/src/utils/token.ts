@@ -1,23 +1,9 @@
 import jwt from 'jsonwebtoken'
 
-/**
- * Generate access token
- **/
-export function generateAccessToken(user: any) {
+export function generateToken(user: any, expiresIn: number): string {
   return jwt.sign(
-    { userId: user.id },
-    process.env.ACCESS_TOKEN_SECRET!,
-    { expiresIn: '15m' },
-  )
-}
-
-/**
- * Generate refresh token
- **/
-export function generateRefreshToken(user: any) {
-  return jwt.sign(
-    { userId: user.id },
-    process.env.REFRESH_TOKEN_SECRET!,
-    { expiresIn: '7d' },
+    { userId: user.id, email: user.email },
+    process.env.JWT_SECRET!,
+    { subject: user.id, expiresIn },
   )
 }

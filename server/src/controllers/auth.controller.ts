@@ -1,15 +1,14 @@
 import { Request, Response } from 'express'
 
-import sendResponse from '../utils/sendRequest'
+import { sendResponse } from '../utils/sendRequest'
 import { hash } from '../utils/password'
 import { comparePasswords } from '../utils/password'
-import { generateAccessToken, generateRefreshToken } from '../utils/token'
+import { generateToken } from '../utils/token'
 
 import { AuthValidations } from '../middlewares/auth.validations'
 import { CreateUserDto, LoginDto } from '../models/dto/user.dto'
 import { UserValidations } from '../middlewares/user.validations'
 import { UserDao } from '../models/dao/user.dao'
-import { RefreshTokenDao } from '../models/dao/refreshToken.dao'
 
 /**
  * Controller class for auth-related operations
@@ -78,62 +77,25 @@ export class AuthController {
         return sendResponse(res, 400, null, 'Invalid email or password')
       }
 
-      const accessToken = generateAccessToken(user)
-      const refreshToken = generateRefreshToken(user)
+      const tokenExpiration = loginDto.isRememberMe
+        ? 7 * 24 * 60 * 60 * 100 // 7 days
+        : 15 * 60 * 100 // 15 minutes
+      const token = generateToken(user, tokenExpiration)
 
-      await RefreshTokenDao.createRefreshToken(
-        user.id!,
-        refreshToken,
-        new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-      )
+      res.cookie('authToken', token, {
+        httpOnly: true,
+        maxAge: tokenExpiration,
+      })
 
       console.log('User logged in successfully')
-      return sendResponse(res, 200, {
-        accessToken,
-        refreshToken,
-      }, 'User logged in successfully')
-    } catch (error: any) {
-      console.error('Error in AuthController -> login', error)
-      return sendResponse(res, 500, null, error)
-    }
-  }
-
-  /**
-   * Handles the refreshing of an access token
-   **/
-  static async refreshToken(req: Request, res: Response) {
-    try {
-      const { refreshToken } = req.body
-
-      const storedToken = await RefreshTokenDao.getRefreshToken(refreshToken)
-      if (!storedToken || storedToken.revokedAt || storedToken.expiresAt < new Date()) {
-        return sendResponse(res, 401, null, 'Invalid refresh token')
-      }
-
-      const user = await UserDao.getUserById(storedToken.userId)
-      if (!user) {
-        return sendResponse(res, 404, null, 'User not found')
-      }
-
-      const newAccessToken = generateAccessToken(user)
-      const newRefreshToken = generateRefreshToken(user)
-
-      await RefreshTokenDao.revokeRefreshToken(refreshToken)
-      await RefreshTokenDao.createRefreshToken(
-        user.id!,
-        newRefreshToken,
-        new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
-      )
-
-      console.log('Token refreshed successfully')
       return sendResponse(
         res,
         200,
-        { newAccessToken, newRefreshToken },
-        'Token refreshed successfully',
+        { token },
+        'User logged in successfully',
       )
     } catch (error: any) {
-      console.error('Error in AuthController -> refreshToken', error)
+      console.error('Error in AuthController -> login', error)
       return sendResponse(res, 500, null, error)
     }
   }
@@ -143,8 +105,7 @@ export class AuthController {
    **/
   static async logout(req: Request, res: Response) {
     try {
-      const refreshToken = req.body.refreshToken
-      await RefreshTokenDao.revokeRefreshToken(refreshToken)
+      res.clearCookie('authToken')
 
       console.log('User logged out successfully')
       return sendResponse(res, 200, null, 'User logged out successfully')

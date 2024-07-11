@@ -1,4 +1,3 @@
-import { Status } from '@prisma/client'
 import { CabinI } from './cabins.interface'
 import { GuestsI } from './guests.interface'
 
@@ -10,7 +9,7 @@ export interface BookingsI {
   numGuest: number;
   cabinPrice: number;
   totalPrice: number;
-  status: Status;
+  status: 'CHECKED_IN' | 'CHECKED_OUT' | 'UNCONFIRMED'
   hasBreakfast: boolean;
   isPaid: boolean;
   observation: string;

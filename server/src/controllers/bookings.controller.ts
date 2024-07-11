@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import sendResponse from '../utils/sendRequest'
+import { sendResponse } from '../utils/sendRequest'
 import validateBookingDates from '../utils/validateBookingDates'
 
 import { BookingsDto } from '../models/dto/bookings.dto'

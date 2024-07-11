@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import sendResponse from '../utils/sendRequest'
+import { sendResponse } from '../utils/sendRequest'
 import { comparePasswords, hash } from '../utils/password'
 
 import { CreateUserDto } from '../models/dto/user.dto'

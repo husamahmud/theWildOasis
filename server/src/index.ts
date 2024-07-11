@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+// import cookieParser from 'cookie-parser'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -9,6 +10,7 @@ const PORT = process.env.PORT
 
 app.use(express.json())
 app.use(cors())
+// app.use(cookieParser())
 
 /**
  * Root route - Info about cabins endpoints
