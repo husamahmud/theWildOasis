@@ -20,3 +20,22 @@ export async function getAllBookings() {
     }
   }
 }
+
+/**
+ * getBookingById - Fetches a booking by ID from the database
+ **/
+export async function getBookingById(id: string) {
+  try {
+    const response = await axios.get(`${BASE_URL}/bookings/${id}`)
+    return response.data
+  } catch (error) {
+    console.error('Error:', error)
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || 'Error getting booking by ID',
+      )
+    } else {
+      throw new Error('Error updating booking')
+    }
+  }
+}

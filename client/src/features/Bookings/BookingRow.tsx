@@ -1,9 +1,12 @@
 import React from 'react'
 import { format, isToday } from 'date-fns'
-import { HiArrowDownOnSquare, HiArrowUpOnSquare } from 'react-icons/hi2'
+import { useNavigate } from 'react-router-dom'
+import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from 'react-icons/hi2'
+
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers.ts'
 
 import Button from '../../ui/Button.tsx'
+import Tag from '../../ui/Tag.tsx'
 
 interface BookingRowProps {
   booking: {
@@ -43,13 +46,8 @@ interface BookingRowProps {
 }
 
 const BookingRow: React.FC<BookingRowProps> = ({ booking, cabin, guest }) => {
-  const { startDate, endDate, numNight, totalPrice, status } = booking
-
-  const statusColor = {
-    UNCONFIRMED: `bg-blue-100 text-blue-700`,
-    CHECKED_IN: `bg-green-100 text-green-700`,
-    CHECKED_OUT: `bg-gray-100 text-gray-700`,
-  }
+  const navigate = useNavigate()
+  const { id, startDate, endDate, numNight, totalPrice, status } = booking
 
   return (
     <div className="grid grid-cols-[0.6fr_1.5fr_2fr_1.4fr_1fr_0.5fr] items-center px-9 py-5">
@@ -76,17 +74,17 @@ const BookingRow: React.FC<BookingRowProps> = ({ booking, cabin, guest }) => {
         </span>
       </div>
 
-      <div
-        className={`textgre w-fit rounded-full px-4 py-2 text-lg font-semibold uppercase ${statusColor[status]}`}
-      >
-        {status.replace('_', ' ')}
-      </div>
+      <Tag status={status} />
 
       <div className="font-sono text-xl font-semibold">
         {formatCurrency(totalPrice)}
       </div>
 
       <div className="flex gap-3">
+        <Button variant="secondary" onClick={() => navigate(`/bookings/${id}`)}>
+          <HiEye />
+        </Button>
+
         {status === 'UNCONFIRMED' && (
           <Button variant="secondary" size="small">
             <HiArrowDownOnSquare size={20} />

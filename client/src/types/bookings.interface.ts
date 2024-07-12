@@ -3,8 +3,9 @@ import { GuestI } from './guests.interface.ts'
 
 export interface BookingsI {
   id: string
-  startDate: Date
-  endDate: Date
+  createdAt: string
+  startDate: string
+  endDate: string
   numNight: number
   numGuest: number
   cabinPrice: number

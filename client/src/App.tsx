@@ -13,6 +13,7 @@ import Users from './pages/Users.tsx'
 import Settings from './pages/Settings.tsx'
 import Account from './pages/Account.tsx'
 import Register from './pages/Register.tsx'
+import Booking from './pages/Booking.tsx'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,7 @@ export default function App() {
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="bookings" element={<Bookings />} />
+            <Route path="bookings/:bookingId" element={<Booking />} />
             <Route path="cabins" element={<Cabins />} />
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
