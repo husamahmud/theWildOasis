@@ -9,6 +9,7 @@ export default function useSettings() {
   } = useQuery({
     queryKey: ['settings'],
     queryFn: getAllSettings,
+    retry: false,
   })
 
   return { isLoading, settings, error }

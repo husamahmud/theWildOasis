@@ -18,6 +18,7 @@ const Button: React.FC<{
   variant?: 'primary' | 'secondary' | 'danger'
   className?: string
   onClick?: () => void
+  rounded?: true | false
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
 }> = ({
@@ -28,10 +29,11 @@ const Button: React.FC<{
   onClick,
   type,
   disabled,
+  rounded = false,
 }) => {
   return (
     <button
-      className={`${SIZES[size]} ${VARIANTS[variant]} ${className} rounded-sm border-none shadow-sm`}
+      className={`${SIZES[size]} ${VARIANTS[variant]} ${className} ${rounded ? 'rounded-full' : 'rounded-sm'} border-none shadow-sm`}
       onClick={onClick}
       disabled={disabled}
       type={type}

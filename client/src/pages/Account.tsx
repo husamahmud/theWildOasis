@@ -1,5 +1,16 @@
-export default function Account() {
+import Row from '../ui/Row.tsx'
+import UpdateUserDataForm from '../features/auth/UpdateUserDataForm.tsx'
+
+const Account = () => {
   return (
-    <div>Account</div>
+    <>
+      <h1>Update your Account</h1>
+
+      <Row>
+        <UpdateUserDataForm />
+      </Row>
+    </>
   )
 }
+
+export default Account

@@ -6,7 +6,7 @@ export default function Bookings() {
   return (
     <>
       <Row type="horizontal">
-        <h1>All bookings</h1>
+        <h1>Bookings</h1>
         <BookingsTableOperations />
       </Row>
 

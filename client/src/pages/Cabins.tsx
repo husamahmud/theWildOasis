@@ -13,7 +13,7 @@ export default function Cabins() {
   return (
     <>
       <Row type="horizontal">
-        <h1>All cabins</h1>
+        <h1>Cabins</h1>
         <CabinTableOperations />
       </Row>
 

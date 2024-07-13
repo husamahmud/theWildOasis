@@ -8,9 +8,10 @@ import useRegister from './useRegister.ts'
 import SpinnerMini from '../../ui/SpinnerMini.tsx'
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('husamahmud@gmail.com')
+  const [username, setUsername] = useState('husamahmud')
+  const [fullname, setFullname] = useState('Husam Mahmud')
+  const [password, setPassword] = useState('123456789')
   const { register, isLoading } = useRegister()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,7 +20,7 @@ const RegisterForm = () => {
       return toast.error('Please fill in all fields')
     }
 
-    register({ email, username, password })
+    register({ email, fullname, username, password })
   }
 
   return (
@@ -32,13 +33,32 @@ const RegisterForm = () => {
       <div className="mb-6">
         <label
           className="mb-2 block text-lg font-semibold text-gray-700"
+          htmlFor="fullname"
+        >
+          Full name
+        </label>
+
+        <input
+          type="text"
+          id="fullname"
+          autoComplete="username"
+          className="w-full rounded-md border border-grey-300 bg-grey-0 px-6 py-3 text-xl shadow-sm"
+          placeholder="Enter your username"
+          value={fullname}
+          onChange={(e) => setFullname(e.target.value)}
+        />
+      </div>
+
+      <div className="mb-6">
+        <label
+          className="mb-2 block text-lg font-semibold text-gray-700"
           htmlFor="username"
         >
           Username
         </label>
 
         <input
-          type="username"
+          type="text"
           id="username"
           autoComplete="username"
           className="w-full rounded-md border border-grey-300 bg-grey-0 px-6 py-3 text-xl shadow-sm"
