@@ -23,12 +23,14 @@ export class LoginDto {
  **/
 export class CreateUserDto {
   username: string
+  fullname: string
   email: string
   password: string
   avatar: string
 
   constructor(bodyRequest: UserI) {
     this.username = bodyRequest.username!
+    this.fullname = bodyRequest.fullname!
     this.email = bodyRequest.email!
     this.password = bodyRequest.password!
     this.avatar = bodyRequest.avatar!

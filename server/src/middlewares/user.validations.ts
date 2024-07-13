@@ -16,6 +16,7 @@ export class UserValidations {
   }> {
     const createSchema = Joi.object({
       username: Joi.string().min(4).required(),
+      fullname: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().min(8).required(),
       avatar: Joi.string(),
@@ -40,6 +41,7 @@ export class UserValidations {
   }> {
     const updateSchema = Joi.object({
       username: Joi.string().min(4),
+      fullname: Joi.string(),
       email: Joi.string().email(),
       password: Joi.string().min(8),
       avatar: Joi.string(),

@@ -91,7 +91,7 @@ export class AuthController {
       return sendResponse(
         res,
         200,
-        { token },
+        { user, token },
         'User logged in successfully',
       )
     } catch (error: any) {
