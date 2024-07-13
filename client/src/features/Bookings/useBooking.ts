@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 
 import { getBookingById } from '../../services/bookings.api.ts'
 import { BookingsI } from '../../types/bookings.interface.ts'
 
-export function useBooking() {
+export default function useBooking() {
   const { bookingId } = useParams()
 
   const { isPending: isLoading, data } = useQuery({

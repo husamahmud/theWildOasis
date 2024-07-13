@@ -114,6 +114,52 @@ export class BookingsDao {
   }
 
   /**
+   * Check in or check out a booking
+   * @param id - Booking id
+   * @returns The booking updated or null if the booking is not found
+   **/
+  static async checkOutBooking(id: string): Promise<BookingsI> {
+    try {
+      return await prisma.bookings.update({
+        where: { id },
+        data: {
+          status: 'CHECKED_OUT',
+        },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
+    } catch (error: any) {
+      console.error('Error in BookingsDao -> checkInOutBooking', error)
+      throw new Error(error.message)
+    }
+  }
+
+  /**
+   * Check in or check out a booking
+   * @param id - Booking id
+   * @returns The booking updated or null if the booking is not found
+   **/
+  static async checkInBooking(id: string): Promise<BookingsI> {
+    try {
+      return await prisma.bookings.update({
+        where: { id },
+        data: {
+          status: 'CHECKED_IN',
+        },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
+    } catch (error: any) {
+      console.error('Error in BookingsDao -> checkInOutBooking', error)
+      throw new Error(error.message)
+    }
+  }
+
+  /**
    * Delete a booking
    * @param id - Booking id
    * @returns The booking deleted or null if the booking is not found

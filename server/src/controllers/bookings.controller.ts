@@ -165,6 +165,38 @@ export class BookingsController {
   }
 
   /**
+   * Handle checking in a booking
+   **/
+  static async checkInOutBooking(req: Request, res: Response) {
+    const id = req.params.id
+
+    try {
+      // Check if the booking exists
+      const booking = await BookingsDao.getBookingById(id)
+      if (!booking) {
+        console.error('Error: Booking not found')
+        return sendResponse(res, 404, null, 'Booking not found')
+      }
+
+      // Check out the booking
+      if (booking.status === 'CHECKED_IN') {
+        // Check out the booking
+        const checkedOutBooking = await BookingsDao.checkOutBooking(id)
+        console.log('Booking checked out successfully')
+        return sendResponse(res, 200, checkedOutBooking, 'Booking checked out successfully')
+      }
+
+      // Check in the booking
+      const checkedInBooking = await BookingsDao.checkInBooking(id)
+      console.log('Booking checked in successfully')
+      return sendResponse(res, 200, checkedInBooking, 'Booking checked in successfully')
+    } catch (error: any) {
+      console.error('Error: check in booking', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
+
+  /**
    * Handle deleting a booking
    **/
   static async deleteBooking(req: Request, res: Response) {

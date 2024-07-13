@@ -1,4 +1,8 @@
-import { useBooking } from './useBooking.ts'
+import { useNavigate } from 'react-router-dom'
+
+import useBooking from './useBooking.ts'
+import useDeleteBooking from './useDeleteBooking.ts'
+import useCheckInOut from '../check-in-out/useCheckInOut.ts'
 
 import Row from '../../ui/Row.tsx'
 import Tag from '../../ui/Tag.tsx'
@@ -7,9 +11,22 @@ import Spinner from '../../ui/Spinner.tsx'
 import BookingDataBox from './BookingDataBox.tsx'
 
 const BookingDetails = () => {
+  const navigate = useNavigate()
+
   const { booking, isLoading } = useBooking()
+  const { deleteCabin, isDeleting } = useDeleteBooking()
+  const { checkInOutBooking, isCheckingInOut } = useCheckInOut()
 
   if (isLoading) return <Spinner />
+
+  const handleDelete = () => {
+    deleteCabin(booking.id)
+    navigate('/bookings')
+  }
+
+  const handleCheckInOut = () => {
+    checkInOutBooking(booking.id)
+  }
 
   return (
     <>
@@ -27,9 +44,23 @@ const BookingDetails = () => {
       <BookingDataBox {...booking} />
 
       <div className="flex justify-end gap-5">
-        {booking.status === 'CHECKED_IN' && <Button>Check out booking</Button>}
-        {booking.status === 'UNCONFIRMED' && <Button>Check in booking</Button>}
-        <Button variant="secondary">Delete</Button>
+        {booking.status === 'CHECKED_IN' && (
+          <Button onClick={handleCheckInOut} disabled={isCheckingInOut}>
+            Check out booking
+          </Button>
+        )}
+        {booking.status === 'UNCONFIRMED' && (
+          <Button onClick={handleCheckInOut} disabled={isCheckingInOut}>
+            Check in booking
+          </Button>
+        )}
+        <Button
+          variant="secondary"
+          disabled={isDeleting}
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
       </div>
     </>
   )

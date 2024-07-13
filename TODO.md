@@ -51,6 +51,9 @@
     - ✅ Validation
     - ✅ Controller
     - ✅ Routes
+- ❌ Socket.io
+    - ❌ Implement socket.io
+    - ❌ Add X online users online
 
 </div>
 
@@ -86,6 +89,16 @@
         - ❌ Get Settings
     - ❌ Users
     - ❌ Error Page
+
+</div>
+
+<div style="flex: 1;">
+
+## Services:
+
+- ❌ services
+    - ❌ Socket.io
+    - ❌ Google Api
 
 </div>
 

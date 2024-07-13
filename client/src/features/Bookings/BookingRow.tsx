@@ -1,7 +1,7 @@
 import React from 'react'
 import { format, isToday } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
-import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from 'react-icons/hi2'
+import { HiEye } from 'react-icons/hi2'
 
 import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers.ts'
 
@@ -84,18 +84,6 @@ const BookingRow: React.FC<BookingRowProps> = ({ booking, cabin, guest }) => {
         <Button variant="secondary" onClick={() => navigate(`/bookings/${id}`)}>
           <HiEye />
         </Button>
-
-        {status === 'UNCONFIRMED' && (
-          <Button variant="secondary" size="small">
-            <HiArrowDownOnSquare size={20} />
-          </Button>
-        )}
-
-        {status === 'CHECKED_IN' && (
-          <Button variant="secondary" size="small">
-            <HiArrowUpOnSquare size={20} />
-          </Button>
-        )}
       </div>
     </div>
   )

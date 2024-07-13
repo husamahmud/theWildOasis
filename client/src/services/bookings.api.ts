@@ -39,3 +39,20 @@ export async function getBookingById(id: string) {
     }
   }
 }
+
+/**
+ * deleteBooking - Deletes a booking from the database
+ **/
+export async function deleteBooking(id: string) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/bookings/${id}`)
+    return response.data
+  } catch (error) {
+    console.error('Error:', error)
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Error deleting booking')
+    } else {
+      throw new Error('Error deleting booking')
+    }
+  }
+}
