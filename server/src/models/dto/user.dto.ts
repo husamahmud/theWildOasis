@@ -25,11 +25,13 @@ export class CreateUserDto {
   username: string
   email: string
   password: string
+  avatar: string
 
   constructor(bodyRequest: UserI) {
     this.username = bodyRequest.username!
     this.email = bodyRequest.email!
     this.password = bodyRequest.password!
+    this.avatar = bodyRequest.avatar!
   }
 }
 

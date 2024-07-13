@@ -18,6 +18,7 @@ export class UserValidations {
       username: Joi.string().min(4).required(),
       email: Joi.string().email().required(),
       password: Joi.string().min(8).required(),
+      avatar: Joi.string(),
     })
 
     // Validate the booking data against the schema
@@ -41,6 +42,7 @@ export class UserValidations {
       username: Joi.string().min(4),
       email: Joi.string().email(),
       password: Joi.string().min(8),
+      avatar: Joi.string(),
     }).min(1) // Ensure at least one field is provided for update
 
     try {
