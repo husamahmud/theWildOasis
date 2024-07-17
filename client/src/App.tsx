@@ -9,7 +9,6 @@ import PageNotFound from './pages/PageNotFound.tsx'
 import Dashboard from './pages/Dashboard.tsx'
 import Bookings from './pages/Bookings.tsx'
 import Cabins from './pages/Cabins.tsx'
-import Users from './pages/Users.tsx'
 import Settings from './pages/Settings.tsx'
 import Account from './pages/Account.tsx'
 import Register from './pages/Register.tsx'
@@ -36,7 +35,6 @@ export default function App() {
             <Route path="bookings" element={<Bookings />} />
             <Route path="bookings/:bookingId" element={<Booking />} />
             <Route path="cabins" element={<Cabins />} />
-            <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
             <Route path="account" element={<Account />} />
           </Route>

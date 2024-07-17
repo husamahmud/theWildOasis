@@ -1,7 +1,5 @@
 export const BASE_URL = 'http://localhost:8080/api/v1'
 
-export const SETTINGS_ID = '256801b0-b898-4467-9cfe-5ad8f9a7cdba'
-
 export const CABINS = [
   {
     id: 'ed2e3d81-0e15-42d6-936e-541f9c1088ed',

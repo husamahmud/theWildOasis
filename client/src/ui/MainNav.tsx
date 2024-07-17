@@ -4,14 +4,12 @@ import {
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineHomeModern,
-  HiOutlineUsers,
 } from 'react-icons/hi2'
 
 const navItems = [
   { to: '/dashboard', icon: <HiOutlineHome />, text: 'Home' },
   { to: '/bookings', icon: <HiOutlineCalendarDays />, text: 'Bookings' },
   { to: '/cabins', icon: <HiOutlineHomeModern />, text: 'Cabins' },
-  { to: '/users', icon: <HiOutlineUsers />, text: 'Users' },
   { to: '/settings', icon: <HiOutlineCog6Tooth />, text: 'Settings' },
 ]
 
@@ -24,9 +22,9 @@ export default function MainNav() {
             <NavLink
               to={to}
               className={({ isActive }) =>
-                `flex items-center gap-3 text-[1.6rem] font-medium p-3 px-6 transition-all ${
+                `flex items-center gap-3 p-3 px-6 text-[1.6rem] font-medium transition-all ${
                   isActive
-                    ? 'text-color-grey-800 bg-color-grey-50 rounded-sm'
+                    ? 'rounded-sm bg-color-grey-50 text-color-grey-800'
                     : 'text-color-grey-600'
                 }`
               }
@@ -34,7 +32,7 @@ export default function MainNav() {
               {({ isActive }) => (
                 <>
                   <span
-                    className={`w-6 h-6 transition-all ${
+                    className={`h-6 w-6 transition-all ${
                       isActive ? 'text-color-brand-600' : 'text-color-grey-400'
                     }`}
                   >
