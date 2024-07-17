@@ -18,7 +18,7 @@ router
   .post('/:id', updateCabin)
   .get('/', getAllCabins)
   .get('/:id', getCabin)
-  .delete('/:id', deleteCabin)
   .delete('/all', deleteAllCabins)
+  .delete('/:id', deleteCabin)
 
 export default router

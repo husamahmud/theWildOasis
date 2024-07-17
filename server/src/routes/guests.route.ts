@@ -18,7 +18,7 @@ router
   .post('/:id', updateGuest)
   .get('/', getAllGuests)
   .get('/:id', getGuest)
-  .delete('/:id', deleteGuest)
   .delete('/all', deleteAllGuests)
+  .delete('/:id', deleteGuest)
 
 export default router

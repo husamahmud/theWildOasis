@@ -388,20 +388,54 @@ function generateBookingData(numEntries: number) {
 
 const bookingsData = generateBookingData(50)
 
+const CABINS = []
+const GUESTS = []
+
+const clearData = async () => {
+  console.log('Clearing existing data...')
+  await fetch(`${SERVER_URL}/cabins/all`, {
+    method: 'DELETE',
+  })
+  await fetch(`${SERVER_URL}/guests/all`, {
+    method: 'DELETE',
+  })
+  await fetch(`${SERVER_URL}/bookings/all`, {
+    method: 'DELETE',
+  })
+}
+
 
 const seedProd = async () => {
-  console.log('Seeding production data...')
+  // clear existing data
+  console.log('Clearing existing data...')
+  await clearData()
 
   // Seed cabins
-  for (const cabin of cabinsData) {
+  console.log('Seeding production data...')
+  for (let i = 0; i < cabinsData.length; i++) {
     const res = await fetch(`${SERVER_URL}/cabins`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(cabin),
+      body: JSON.stringify(cabinsData[i]),
     })
     const data = await res.json()
-    console.log('Cabin created:', data)
+    console.log()
+    console.log('Cabin created:', data.data?.id)
   }
+
+  // for (const cabin of cabinsData) {
+  //   const res = await fetch(`${SERVER_URL}/cabins`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(cabin),
+  //   })
+  //   const data = await res.json()
+  //   console.log('Cabin created:', data)
+  // }
 }
+
+seedProd()

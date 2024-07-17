@@ -20,7 +20,7 @@ router
   .post('/check-in-out/:id', checkInOutBooking)
   .get('/', getAllBookings)
   .get('/:id', getBookingById)
-  .delete('/:id', deleteBooking)
   .delete('/all', deleteAllBookings)
+  .delete('/:id', deleteBooking)
 
 export default router
