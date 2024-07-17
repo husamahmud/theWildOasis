@@ -7,9 +7,11 @@ const router = express.Router()
 const {
   updateSettings,
   getSettings,
+  createSettings,
 } = SettingsController
 
 router
+  .post('/', createSettings)
   .post('/:id', updateSettings)
   .get('/', getSettings)
 

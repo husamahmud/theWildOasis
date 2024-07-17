@@ -6,6 +6,15 @@ import { SettingsI } from '../../types/settings.interface'
  * Data Access Object (DAO) for interacting with the Settings table in the database.
  */
 export class SettingsDao {
+  static async createSettings(settings: SettingsI): Promise<SettingsI> {
+    try {
+      return await prisma.settings.create({ data: settings })
+    } catch (error: any) {
+      console.error('Error in SettingsDao -> createSettings', error)
+      throw new Error(error.message)
+    }
+  }
+
   /**
    * Update the settings entry in the database.
    * @param {string} id - The unique identifier of the settings to be updated.
