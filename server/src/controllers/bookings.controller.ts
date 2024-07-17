@@ -219,4 +219,19 @@ export class BookingsController {
       return sendResponse(res, 500, null, error)
     }
   }
+
+  /**
+   * Handle deleting all bookings
+   **/
+  static async deleteAllBookings(req: Request, res: Response) {
+    try {
+      // Delete all bookings
+      await BookingsDao.deleteAllBookings()
+      console.log('All bookings deleted successfully')
+      return sendResponse(res, 204, null, 'All bookings deleted successfully')
+    } catch (error: any) {
+      console.error('Error: delete all bookings', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
 }

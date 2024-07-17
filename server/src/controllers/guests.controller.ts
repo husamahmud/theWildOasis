@@ -147,4 +147,19 @@ export class GuestsController {
       return sendResponse(res, 500, null, error)
     }
   }
+
+  /**
+   * Handles the deletion of all guests.
+   **/
+  static async deleteAllGuests(req: Request, res: Response) {
+    try {
+      // Delete all guests
+      await GuestsDao.deleteAllGuests()
+      console.log('Guests deleted successfully')
+      return sendResponse(res, 204, null, 'Guests deleted successfully')
+    } catch (error: any) {
+      console.log('Error: delete all guests', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
 }

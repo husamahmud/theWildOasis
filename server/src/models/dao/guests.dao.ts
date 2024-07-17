@@ -69,4 +69,17 @@ export class GuestsDao {
   static async deleteGuest(id: string): Promise<GuestsI | null> {
     return prisma.guests.delete({ where: { id } })
   }
+
+  /**
+   * Deletes all guest entries from the database.
+   * @returns {Promise<void>} - A promise that resolves once all guests have been deleted.
+   **/
+  static async deleteAllGuests(): Promise<void> {
+    try {
+      await prisma.guests.deleteMany()
+    } catch (error: any) {
+      console.error('Error in GuestsDao -> deleteAllGuests', error)
+      throw new Error(error.message)
+    }
+  }
 }

@@ -222,4 +222,16 @@ export class BookingsDao {
       throw new Error(error.message)
     }
   }
+
+  /**
+   * Delete all bookings
+   **/
+  static async deleteAllBookings(): Promise<void> {
+    try {
+      await prisma.bookings.deleteMany({})
+    } catch (error: any) {
+      console.error('Error in BookingsDao -> deleteAllBookings', error)
+      throw new Error(error.message)
+    }
+  }
 }

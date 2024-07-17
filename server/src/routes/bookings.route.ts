@@ -11,6 +11,7 @@ const {
   deleteBooking,
   updateBooking,
   checkInOutBooking,
+  deleteAllBookings,
 } = BookingsController
 
 router
@@ -20,5 +21,6 @@ router
   .get('/', getAllBookings)
   .get('/:id', getBookingById)
   .delete('/:id', deleteBooking)
+  .delete('/all', deleteAllBookings)
 
 export default router

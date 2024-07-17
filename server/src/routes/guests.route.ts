@@ -10,6 +10,7 @@ const {
   getGuest,
   deleteGuest,
   updateGuest,
+  deleteAllGuests,
 } = GuestsController
 
 router
@@ -18,5 +19,6 @@ router
   .get('/', getAllGuests)
   .get('/:id', getGuest)
   .delete('/:id', deleteGuest)
+  .delete('/all', deleteAllGuests)
 
 export default router

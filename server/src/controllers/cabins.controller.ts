@@ -128,4 +128,18 @@ export class CabinsController {
       return sendResponse(res, 500, null, error)
     }
   }
+
+  /**
+   * Deletes all cabins from the database.
+   */
+  static async deleteAllCabins(req: Request, res: Response) {
+    try {
+      await CabinsDao.deleteAllCabins()
+      console.log('Cabins deleted successfully')
+      return sendResponse(res, 200, null, 'Cabins deleted successfully')
+    } catch (error: any) {
+      console.log('Error: delete all cabins', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
 }

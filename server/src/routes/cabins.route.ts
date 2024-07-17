@@ -10,6 +10,7 @@ const {
   getCabin,
   deleteCabin,
   updateCabin,
+  deleteAllCabins,
 } = CabinsController
 
 router
@@ -18,5 +19,6 @@ router
   .get('/', getAllCabins)
   .get('/:id', getCabin)
   .delete('/:id', deleteCabin)
+  .delete('/all', deleteAllCabins)
 
 export default router

@@ -81,12 +81,25 @@ export class CabinsDao {
    * Deletes a specific cabin entry from the database by its cabin number.
    * @param {string} id - The unique identifier of the cabin to be deleted.
    * @returns {Promise<CabinI | null>} - A promise that resolves to the deleted cabin object if found, or null if not found.
-   */
+   **/
   static async deleteCabin(id: string): Promise<CabinI | null> {
     try {
       return await prisma.cabins.delete({ where: { id } })
     } catch (error: any) {
       console.error('Error in CabinsDao -> deleteCabin', error)
+      throw new Error(error.message)
+    }
+  }
+
+  /**
+   * Deletes all cabin entries from the database.
+   * @returns {Promise<void>} - A promise that resolves when all cabins have been deleted.
+   **/
+  static async deleteAllCabins(): Promise<void> {
+    try {
+      await prisma.cabins.deleteMany()
+    } catch (error: any) {
+      console.error('Error in CabinsDao -> deleteAllCabins', error)
       throw new Error(error.message)
     }
   }
