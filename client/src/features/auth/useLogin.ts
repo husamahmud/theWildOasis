@@ -12,7 +12,7 @@ export default function useLogin() {
     mutationFn: loginAPI,
     onSuccess: (data) => {
       toast.success('Logged in successfully!')
-      console.log(data.data.user)
+      console.log('useLogin', data.data.user)
       queryClient.setQueryData(['user'], data.data.user)
       navigate('/dashboard')
     },

@@ -12,7 +12,6 @@ export default function useLogout() {
     mutationFn: logoutAPI,
     onSuccess: () => {
       toast.success('Logged out successfully!')
-      console.log('Logged out successfully!')
       navigate('/login')
       queryClient.setQueryData(['user'], null)
     },

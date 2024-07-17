@@ -2,9 +2,9 @@ import useUser from './useUser.ts'
 import SpinnerMini from '../../ui/SpinnerMini.tsx'
 
 const UserAvatar = () => {
-  const { data: user, isPending } = useUser()
+  const { user, isLoading } = useUser()
 
-  if (isPending) return <SpinnerMini />
+  if (isLoading) return <SpinnerMini />
   const { avatar, username } = user || {}
 
   return (

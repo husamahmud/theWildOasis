@@ -6,6 +6,7 @@ import { LoginI, RegisterI, UserI } from '../types/auth.interface.ts'
 export async function login(data: LoginI) {
   try {
     const response = await axios.post(`${BASE_URL}/auth/login`, data)
+    console.log('login response:', response.data)
     return response.data
   } catch (error) {
     console.error('Error:', error)
@@ -20,6 +21,7 @@ export async function login(data: LoginI) {
 export async function register(data: RegisterI) {
   try {
     const response = await axios.post(`${BASE_URL}/auth/register`, data)
+    console.log('register response:', response.data)
     return response.data
   } catch (error) {
     console.error('Error:', error)
@@ -34,7 +36,7 @@ export async function register(data: RegisterI) {
 export async function logout() {
   try {
     const response = await axios.post(`${BASE_URL}/auth/logout`)
-    console.log(response.data)
+    console.log('logout response:', response.data)
     return response.data
   } catch (error) {
     console.error('Error:', error)
