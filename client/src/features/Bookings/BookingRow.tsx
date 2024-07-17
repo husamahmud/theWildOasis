@@ -11,8 +11,8 @@ import Tag from '../../ui/Tag.tsx'
 interface BookingRowProps {
   booking: {
     id: string
-    startDate: Date
-    endDate: Date
+    startDate: string
+    endDate: string
     numNight: number
     numGuest: number
     cabinPrice: number
