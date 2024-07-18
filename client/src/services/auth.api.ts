@@ -62,9 +62,9 @@ export async function getUser(id: string) {
   }
 }
 
-export async function updateUser(id: string, data: UserI) {
+export async function updateUser(data: UserI) {
   try {
-    const response = await axios.put(`${BASE_URL}/auth/update/${id}`, data)
+    const response = await axios.put(`${BASE_URL}/auth/update/${data.id}`, data)
     return response.data
   } catch (error) {
     console.error('Error:', error)

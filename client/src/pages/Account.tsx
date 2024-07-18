@@ -1,5 +1,6 @@
 import Row from '../ui/Row.tsx'
 import UpdateUserDataForm from '../features/auth/UpdateUserDataForm.tsx'
+import UpdateUserPassword from '../features/auth/UpdateUserPassword.tsx'
 
 const Account = () => {
   return (
@@ -8,6 +9,7 @@ const Account = () => {
 
       <Row>
         <UpdateUserDataForm />
+        <UpdateUserPassword />
       </Row>
     </>
   )

@@ -5,7 +5,7 @@ import { getUser } from '../../services/auth.api.ts'
 
 export default function useUser() {
   const queryClient = useQueryClient()
-  const user: UserI | undefined = queryClient.getQueryData(['user'])
+  const user: UserI = queryClient.getQueryData(['user'])!
 
   const { data, isPending } = useQuery<UserI>({
     queryKey: ['user'],
