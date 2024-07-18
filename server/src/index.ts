@@ -7,22 +7,10 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT
-const allowedOrigins = [
-  'https://the-wild-oasis-gilt-zeta.vercel.app',
-  'http://localhost:5173',
-]
 
 app.use(express.json())
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true)
-    if (allowedOrigins.indexOf(origin) === -1) {
-      return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false)
-    }
-    return callback(null, true)
-  },
-  credentials: true,
-}))
+app.use(cors())
+app.options('*', cors())
 
 /**
  * Root route - Info about cabins endpoints
