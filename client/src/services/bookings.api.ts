@@ -41,6 +41,25 @@ export async function getBookingById(id: string) {
 }
 
 /**
+ * getBookingsAfterDate - Fetches bookings after a specific date from the database
+ **/
+export async function getBookingsAfterDate(date: string) {
+  try {
+    const response = await axios.get(`${BASE_URL}/bookings/after/${date}`)
+    return response.data
+  } catch (error) {
+    console.error('Error:', error)
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data.message || 'Error getting bookings after date',
+      )
+    } else {
+      throw new Error('Error updating bookings')
+    }
+  }
+}
+
+/**
  * deleteBooking - Deletes a booking from the database
  **/
 export async function deleteBooking(id: string) {
