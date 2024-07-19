@@ -5,32 +5,32 @@ import Button from '../../ui/Button.tsx'
 import useUser from './useUser.ts'
 import Spinner from '../../ui/Spinner.tsx'
 import useUpdateUser from './useUpdateUser.ts'
+import { UserI } from '../../types/auth.interface.ts'
 
 const UpdateUserDataForm = () => {
   const { user, isLoading } = useUser()
   const { updateUser, isUpdating } = useUpdateUser()
 
-  const [email, setEmail] = useState(user?.email ?? '')
-  const [fullname, setFullname] = useState(user?.fullname ?? '')
-  const [avatar, setAvatar] = useState(user?.avatar ?? '')
-  const [username, setUsername] = useState(user?.username ?? '')
+  const email = user?.email || ''
+  const [fullname, setFullname] = useState(user?.fullname || '')
+  const [avatar, setAvatar] = useState(user?.avatar || '')
+  const [username, setUsername] = useState(user?.username || '')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const changedData: Partial<typeof user> = {
-      id: user?.id,
+    if (!user) return
+
+    const updatedFields: Partial<UserI> = {
+      id: user.id,
     }
 
-    if (email !== user?.email) changedData.email = email
-    if (fullname !== user?.fullname) changedData.fullname = fullname
-    if (avatar !== '') changedData.avatar = avatar
-    if (username !== user?.username) changedData.username = username
+    if (fullname !== user.fullname) updatedFields.fullname = fullname
+    if (username !== user.username) updatedFields.username = username
+    if (avatar !== user.avatar) updatedFields.avatar = avatar.trim() || ''
 
-    if (Object.keys(changedData).length > 0) {
-      updateUser(changedData)
-    } else {
-      console.log('No changes to update')
+    if (Object.keys(updatedFields).length > 0) {
+      updateUser(updatedFields as UserI)
     }
   }
 
@@ -51,7 +51,6 @@ const UpdateUserDataForm = () => {
           id="email"
           disabled={true}
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
           className="rounded-md border border-grey-300 bg-grey-0 px-6 py-3 shadow-sm"
         />
       </FormRow>

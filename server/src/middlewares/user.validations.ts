@@ -44,7 +44,7 @@ export class UserValidations {
       fullname: Joi.string(),
       email: Joi.string().email(),
       password: Joi.string().min(8),
-      avatar: Joi.string(),
+      avatar: Joi.string().allow(null, ''),
     }).min(1) // Ensure at least one field is provided for update
 
     try {
