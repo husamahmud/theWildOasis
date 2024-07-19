@@ -8,6 +8,7 @@ const {
   createBooking,
   getAllBookings,
   getBookingById,
+  getBookingsAfterDate,
   deleteBooking,
   updateBooking,
   checkInOutBooking,
@@ -20,6 +21,7 @@ router
   .post('/check-in-out/:id', checkInOutBooking)
   .get('/', getAllBookings)
   .get('/:id', getBookingById)
+  .get('/after/:date', getBookingsAfterDate)
   .delete('/all', deleteAllBookings)
   .delete('/:id', deleteBooking)
 

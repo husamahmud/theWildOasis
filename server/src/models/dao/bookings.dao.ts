@@ -224,6 +224,28 @@ export class BookingsDao {
   }
 
   /**
+   * Get all bookings after a date
+   * @param date - Date
+   * @returns All bookings after the date
+   **/
+  static async getBookingsAfterDate(date: Date): Promise<BookingsI[]> {
+    try {
+      return await prisma.bookings.findMany({
+        where: {
+          startDate: { gte: date },
+        },
+        include: {
+          guest: true,
+          cabin: true,
+        },
+      })
+    } catch (error: any) {
+      console.error('Error in BookingsDao -> getBookingAfterDate', error)
+      throw new Error(error.message)
+    }
+  }
+
+  /**
    * Delete all bookings
    **/
   static async deleteAllBookings(): Promise<void> {

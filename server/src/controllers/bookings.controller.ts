@@ -111,6 +111,27 @@ export class BookingsController {
   }
 
   /**
+   * Handle getting bookings after
+   **/
+  static async getBookingsAfterDate(req: Request, res: Response) {
+    const date = req.params.date
+
+    try {
+      const bookings = await BookingsDao.getBookingsAfterDate(new Date(date))
+      if (!bookings) {
+        console.error('Error: Booking not found')
+        return sendResponse(res, 404, null, 'Booking not found')
+      }
+
+      console.log('Booking retrieved successfully')
+      return sendResponse(res, 200, bookings, 'Booking retrieved successfully')
+    } catch (error: any) {
+      console.error('Error: get booking by ID', error)
+      return sendResponse(res, 500, null, error)
+    }
+  }
+
+  /**
    * Handle updating a booking
    **/
   static async updateBooking(req: Request, res: Response) {
