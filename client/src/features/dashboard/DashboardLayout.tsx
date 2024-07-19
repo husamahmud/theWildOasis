@@ -21,10 +21,6 @@ export default function DashboardLayout() {
       />
 
       <SalesChart bookings={bookings} numDays={numDays} />
-
-      <h1>Statics</h1>
-      <h1>Today's activity</h1>
-      <h1>Chart stay duration</h1>
     </div>
   )
 }
