@@ -60,9 +60,9 @@ export async function addCabin(cabin: CabinI) {
 /**
  * updateCabin - Updates a cabin in the database
  **/
-export async function updateCabin(id: string, cabin: CabinI) {
+export async function updateCabin(cabin: CabinI) {
   try {
-    const response = await axios.post(`${BASE_URL}/cabins/${id}`, cabin)
+    const response = await axios.post(`${BASE_URL}/cabins/${cabin.id}`, cabin)
     return response.data
   } catch (error) {
     console.error('Error:', error)
