@@ -2,6 +2,7 @@ import Stats from './Stats.tsx'
 import { useCabins } from '../cabins/useCabins.ts'
 import Spinner from '../../ui/Spinner.tsx'
 import { useRecentBookings } from './useRecentBookings.ts'
+import SalesChart from './SalesChart.tsx'
 
 export default function DashboardLayout() {
   const { cabins, isLoading: isLoadingCabins } = useCabins()
@@ -19,10 +20,11 @@ export default function DashboardLayout() {
         numDays={numDays}
       />
 
+      <SalesChart bookings={bookings} numDays={numDays} />
+
       <h1>Statics</h1>
       <h1>Today's activity</h1>
       <h1>Chart stay duration</h1>
-      <h1>Chart sales</h1>
     </div>
   )
 }

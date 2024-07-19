@@ -134,3 +134,8 @@ img {
 	max-width: 100%;
 	filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+	stroke: var(--color-grey-300);
+}
