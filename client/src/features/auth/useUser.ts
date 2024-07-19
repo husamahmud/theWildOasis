@@ -7,10 +7,10 @@ export default function useUser() {
   const queryClient = useQueryClient()
   const user: UserI = queryClient.getQueryData(['user'])!
 
-  const { data, isPending } = useQuery<UserI>({
+  const { data, isPending, error } = useQuery<UserI>({
     queryKey: ['user'],
-    queryFn: () => getUser(user!.id),
+    queryFn: () => getUser(user.id),
   })
 
-  return { user: data, isLoading: isPending }
+  return { user: data, isLoading: isPending, error }
 }

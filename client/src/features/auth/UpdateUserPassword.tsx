@@ -14,23 +14,30 @@ const UpdateUserPassword = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const changedData: Partial<typeof user> = {
-    id: user?.id,
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    if (!user) return
+
     if (password !== confirmPassword) {
       toast.error('Passwords do not match')
-    } else if (password.length < 8) {
-      toast.error('Password must be at least 8 characters long')
-    } else if (password === '' || confirmPassword === '') {
-      toast.error('Password cannot be empty')
+      return
     }
 
-    changedData.password = password
-    updateUser(changedData)
+    if (password.length < 8) {
+      toast.error('Password must be at least 8 characters long')
+      return
+    }
+
+    if (password === '' || confirmPassword === '') {
+      toast.error('Password cannot be empty')
+      return
+    }
+
+    updateUser({
+      ...user,
+      password: password,
+    })
   }
 
   if (isLoading) return <Spinner />
