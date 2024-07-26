@@ -22,7 +22,7 @@ export async function getAllSettings() {
 export async function getSettingId() {
   try {
     const response = await axios.get(`${BASE_URL}/settings/`)
-    return response.data.id
+    return response.data.data.id
   } catch (error) {
     console.error('Error:', error)
     if (axios.isAxiosError(error)) {

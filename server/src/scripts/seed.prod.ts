@@ -101,6 +101,26 @@ const seedProd = async () => {
       }
     }
 
+    const settings = {
+      minBookingLen: 1,
+      maxBookingLen: 90,
+      maxGuests: 9,
+      breakfastCost: 15,
+    }
+    const response = await fetch(`${SERVER_URL}/settings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(settings),
+    })
+    const data = await response.json()
+    if (data.data) {
+      console.log('Settings created:', data.data)
+    } else {
+      console.error('Failed to create settings:', data)
+    }
+
     console.log('Data seeding completed. 🪄')
   } catch (error) {
     console.error('An error occurred during seeding:', error)
