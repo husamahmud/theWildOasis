@@ -8,10 +8,10 @@ import useRegister from './useRegister.ts'
 import SpinnerMini from '../../ui/SpinnerMini.tsx'
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState('husamahmud@gmail.com')
-  const [username, setUsername] = useState('husamahmud')
-  const [fullname, setFullname] = useState('Husam Mahmud')
-  const [password, setPassword] = useState('123456789')
+  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
+  const [fullname, setFullname] = useState('')
+  const [password, setPassword] = useState('')
   const { register, isLoading } = useRegister()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
